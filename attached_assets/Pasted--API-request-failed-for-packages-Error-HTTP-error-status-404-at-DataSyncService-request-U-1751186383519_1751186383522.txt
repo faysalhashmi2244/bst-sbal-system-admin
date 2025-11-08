@@ -1,0 +1,212 @@
+
+API request failed for /packages: Error: HTTP error! status: 404
+    at DataSyncService.request (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:37:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async DataSyncService.syncPackages (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:63:11)
+    at async DataSyncService.fullSync (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:300:5)
+Error syncing package 1: Error: HTTP error! status: 404
+    at DataSyncService.request (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:37:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async DataSyncService.syncPackages (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:63:11)
+    at async DataSyncService.fullSync (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:300:5)
+API request failed for /packages: Error: HTTP error! status: 404
+    at DataSyncService.request (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:37:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async DataSyncService.syncPackages (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:63:11)
+    at async DataSyncService.fullSync (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:300:5)
+Error syncing package 2: Error: HTTP error! status: 404
+    at DataSyncService.request (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:37:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async DataSyncService.syncPackages (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:63:11)
+    at async DataSyncService.fullSync (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:300:5)
+API request failed for /packages: Error: HTTP error! status: 404
+    at DataSyncService.request (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:37:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async DataSyncService.syncPackages (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:63:11)
+    at async DataSyncService.fullSync (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:300:5)
+Error syncing package 3: Error: HTTP error! status: 404
+    at DataSyncService.request (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:37:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async DataSyncService.syncPackages (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:63:11)
+    at async DataSyncService.fullSync (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:300:5)
+API request failed for /packages: Error: HTTP error! status: 404
+    at DataSyncService.request (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:37:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async DataSyncService.syncPackages (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:63:11)
+    at async DataSyncService.fullSync (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:300:5)
+Error syncing package 4: Error: HTTP error! status: 404
+    at DataSyncService.request (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:37:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async DataSyncService.syncPackages (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:63:11)
+    at async DataSyncService.fullSync (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:300:5)
+API request failed for /packages: Error: HTTP error! status: 404
+    at DataSyncService.request (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:37:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async DataSyncService.syncPackages (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:63:11)
+    at async DataSyncService.fullSync (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:300:5)
+Error syncing package 5: Error: HTTP error! status: 404
+    at DataSyncService.request (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:37:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async DataSyncService.syncPackages (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:63:11)
+    at async DataSyncService.fullSync (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:300:5)
+API request failed for /packages: Error: HTTP error! status: 404
+    at DataSyncService.request (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:37:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async DataSyncService.syncPackages (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:63:11)
+    at async DataSyncService.fullSync (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:300:5)
+Error syncing package 6: Error: HTTP error! status: 404
+    at DataSyncService.request (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:37:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async DataSyncService.syncPackages (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:63:11)
+    at async DataSyncService.fullSync (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:300:5)
+API request failed for /packages: Error: HTTP error! status: 404
+    at DataSyncService.request (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:37:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async DataSyncService.syncPackages (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:63:11)
+    at async DataSyncService.fullSync (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:300:5)
+Error syncing package 7: Error: HTTP error! status: 404
+    at DataSyncService.request (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:37:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async DataSyncService.syncPackages (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:63:11)
+    at async DataSyncService.fullSync (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:300:5)
+API request failed for /packages: Error: HTTP error! status: 404
+    at DataSyncService.request (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:37:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async DataSyncService.syncPackages (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:63:11)
+    at async DataSyncService.fullSync (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:300:5)
+Error syncing package 8: Error: HTTP error! status: 404
+    at DataSyncService.request (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:37:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async DataSyncService.syncPackages (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:63:11)
+    at async DataSyncService.fullSync (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:300:5)
+API request failed for /packages: Error: HTTP error! status: 404
+    at DataSyncService.request (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:37:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async DataSyncService.syncPackages (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:63:11)
+    at async DataSyncService.fullSync (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:300:5)
+Error syncing package 9: Error: HTTP error! status: 404
+    at DataSyncService.request (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:37:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async DataSyncService.syncPackages (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:63:11)
+    at async DataSyncService.fullSync (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:300:5)
+API request failed for /packages: Error: HTTP error! status: 404
+    at DataSyncService.request (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:37:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async DataSyncService.syncPackages (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:63:11)
+    at async DataSyncService.fullSync (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:300:5)
+Error syncing package 10: Error: HTTP error! status: 404
+    at DataSyncService.request (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:37:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async DataSyncService.syncPackages (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:63:11)
+    at async DataSyncService.fullSync (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:300:5)
+API request failed for /packages: Error: HTTP error! status: 404
+    at DataSyncService.request (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:37:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async DataSyncService.syncPackages (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:63:11)
+    at async DataSyncService.fullSync (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:300:5)
+Error syncing package 11: Error: HTTP error! status: 404
+    at DataSyncService.request (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:37:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async DataSyncService.syncPackages (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:63:11)
+    at async DataSyncService.fullSync (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:300:5)
+Syncing events from block 27715561  to latest...
+Processing blocks 27715561  to 27291641...
+Processed 0 events from blocks 27715561 -27291641
+Processing blocks 27291642 to 27301641...
+Processed 0 events from blocks 27291642-27301641
+Processing blocks 27301642 to 27311641...
+Processed 0 events from blocks 27301642-27311641
+Processing blocks 27311642 to 27321641...
+Processed 0 events from blocks 27311642-27321641
+Processing blocks 27321642 to 27331641...
+Processed 0 events from blocks 27321642-27331641
+Processing blocks 27331642 to 27341641...
+Processed 0 events from blocks 27331642-27341641
+Processing blocks 27341642 to 27351641...
+Processed 0 events from blocks 27341642-27351641
+Processing blocks 27351642 to 27361641...
+Processed 0 events from blocks 27351642-27361641
+Processing blocks 27361642 to 27371641...
+Processed 0 events from blocks 27361642-27371641
+Processing blocks 27371642 to 27381641...
+Unknown event type: OwnershipTransferred
+Unknown event type: NodePackageAdded
+Unknown event type: NodePackageAdded
+Unknown event type: NodePackageAdded
+Unknown event type: NodePackageAdded
+Unknown event type: NodePackageAdded
+Unknown event type: NodePackageAdded
+Unknown event type: NodePackageAdded
+Unknown event type: NodePackageAdded
+Unknown event type: NodePackageAdded
+Unknown event type: NodePackageAdded
+Unknown event type: NodePackageAdded
+Unknown event type: ProsperityFundSettingsUpdated
+Unknown event type: LiquidityWithdrawalSettingsUpdated
+Unknown event type: FirstTimeUserFeeSettingsUpdated
+Unknown event type: OwnershipTransferred
+Unknown event type: SevenLevelReferralPercentageUpdated
+Unknown event type: SevenLevelReferralPercentageUpdated
+Unknown event type: SevenLevelReferralPercentageUpdated
+Unknown event type: SevenLevelReferralPercentageUpdated
+Unknown event type: ProsperityFundSettingsUpdated
+Unknown event type: ProsperityFundSettingsUpdated
+Unknown event type: FirstTimeUserFeeSettingsUpdated
+API request failed for /user-stats: Error: HTTP error! status: 404
+    at DataSyncService.request (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:37:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async DataSyncService.updateUserStats (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:243:7)
+    at async DataSyncService.processEvent (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:137:11)
+    at async DataSyncService.syncEvents (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:99:13)
+    at async DataSyncService.fullSync (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:303:5)
+Error updating user stats: Error: HTTP error! status: 404
+    at DataSyncService.request (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:37:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async DataSyncService.updateUserStats (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:243:7)
+    at async DataSyncService.processEvent (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:137:11)
+    at async DataSyncService.syncEvents (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:99:13)
+    at async DataSyncService.fullSync (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:303:5)
+Unknown event type: LiquidityWithdrawalSettingsUpdated
+API request failed for /user-stats: Error: HTTP error! status: 404
+    at DataSyncService.request (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:37:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async DataSyncService.updateUserStats (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:243:7)
+    at async DataSyncService.processEvent (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:137:11)
+    at async DataSyncService.syncEvents (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:99:13)
+    at async DataSyncService.fullSync (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:303:5)
+Error updating user stats: Error: HTTP error! status: 404
+    at DataSyncService.request (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:37:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async DataSyncService.updateUserStats (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:243:7)
+    at async DataSyncService.processEvent (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:137:11)
+    at async DataSyncService.syncEvents (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:99:13)
+    at async DataSyncService.fullSync (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:303:5)
+API request failed for /user-stats: Error: HTTP error! status: 404
+    at DataSyncService.request (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:37:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async DataSyncService.updateUserStats (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:243:7)
+    at async DataSyncService.processEvent (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:137:11)
+    at async DataSyncService.syncEvents (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:99:13)
+    at async DataSyncService.fullSync (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:303:5)
+Error updating user stats: Error: HTTP error! status: 404
+    at DataSyncService.request (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:37:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async DataSyncService.updateUserStats (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:243:7)
+    at async DataSyncService.processEvent (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:137:11)
+    at async DataSyncService.syncEvents (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:99:13)
+    at async DataSyncService.fullSync (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:303:5)
+API request failed for /user-stats: Error: HTTP error! status: 404
+    at DataSyncService.request (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:37:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async DataSyncService.updateUserStats (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:243:7)
+    at async DataSyncService.processEvent (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:137:11)
+    at async DataSyncService.syncEvents (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:99:13)
+    at async DataSyncService.fullSync (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:303:5)
+Error updating user stats: Error: HTTP error! status: 404
+    at DataSyncService.request (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:37:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async DataSyncService.updateUserStats (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:243:7)
+    at async DataSyncService.processEvent (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:137:11)
+    at async DataSyncService.syncEvents (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:99:13)
+    at async DataSyncService.fullSync (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/data-sync.js:303:5)
+Unknown event type: ReferralRe

@@ -1,0 +1,65 @@
+  // Event emitted when a new node package is added
+    event NodePackageAdded(uint256 indexed id, string name, uint256 price, uint256 duration, uint256 roiPercentage);
+
+    // Event emitted when a node package is updated
+    event NodePackageUpdated(uint256 indexed id, string name, uint256 price, uint256 duration, uint256 roiPercentage, bool isActive);
+
+    // Event emitted when a node is purchased
+    event NodePurchased(address indexed user, uint256 indexed packageId, uint256 purchaseTime, uint256 expiryTime, uint256 currentNodeId);
+
+    // Event emitted when rewards are claimed
+    event RewardsClaimed(address indexed user, uint256 amount, uint256 nodeIndex);
+
+    // Event emitted when a referral is registered
+    event ReferralRegistered(address indexed user, address indexed referrer, uint256 indexed packageId, uint256 packageReferralCount, uint256 totalReferralCount);
+
+    // Event emitted when minimum referrals requirement is updated
+    event MinReferralsUpdated(uint256 oldValue, uint256 newValue);
+    // Event emitted when a referral is registered and reward is distributed
+    event ReferralRegisteredAndRewardDistributed(address indexed referrer, address indexed user, uint256 indexed packageId, uint256 rewardAmount);
+    // Event to emitted booster percentage
+    event UpdateBoosterPercentage(uint256 boosterPercentage);
+    event AddBoosterReward(address indexed user, uint256 boosterReward, uint256 packageId);
+    // Events for Prosperity Fund
+    event ProsperityFundContribution(uint256 amount, uint256 newBalance);
+    event ProsperityFundDistributed(uint256 amount, address recipient);
+    event ProsperityFundSettingsUpdated(bool enabled, uint256 percentage, uint256 distributionDays);
+    
+    // Events for Package-wise Prosperity Fund
+    event PackageProsperityFundContribution(uint256 indexed packageId, uint256 indexed cycle, uint256 amount, uint256 newBalance);
+    event PackageProsperityFundDistributed(uint256 indexed packageId, uint256 indexed cycle, uint256 amount, address recipient);
+    
+    // Events for Admin Marketing Bonus
+    event AdminMarketingBonusCollected(address indexed adminWallet, uint256 amount, uint256 totalCollected);
+    event AdminMarketingBonusSettingsUpdated(bool enabled, uint256 percentage, address adminWallet);
+       
+    // Events for Liquidity Withdrawal
+    event LiquidityWithdrawn(address indexed user, address liquidityAddress, uint256 amount, uint256 percentage, uint256 totalWithdrawn);
+    event LiquidityWithdrawalSettingsUpdated(bool enabled, uint256 percentage, address liquidityAddress);
+    
+    // Events for First-time User Fee
+    event FirstTimeUserFeeCollected(address indexed user, uint256 packageId, uint256 feeAmount, uint256 percentage, uint256 totalCollected);
+    event FirstTimeUserFeeSettingsUpdated(uint256 percentage, address feeAddress);
+
+    // Event emitted when rewards are withdrawn
+    event RewardsWithdrawn(address indexed user, uint256 amount);
+    
+    // Added for tracking reward withdrawals
+    event RewardWithdrawalRequest(address indexed user, uint256 amount, uint256 timestamp);
+
+    // Event emitted when seven-level referral percentages are updated
+    event SevenLevelReferralPercentageUpdated(uint256 indexed index, uint256 percentage);
+
+    // Event emitted when bulk referral reward is earned
+    event BulkReferralRewardEarned(address indexed user, uint256 rewardAmount, uint256 salesTotal, uint256 referralCount, uint256 _packageId);
+
+    // Event emitted when rewards discount settings are updated
+    event RewardsDiscountSettingsUpdated(bool enabled, uint256 percentage);
+
+    // Event emitted when a discounted purchase is made
+    event DiscountedNodePurchased(address indexed user, uint256 indexed packageId, uint256 originalPrice, uint256 discountedPrice, uint256 rewardsUsed);
+
+    // Mapping to track ascension bonus metrics
+    mapping(address => mapping(uint256 => uint256) ) public userAscensionBonusReferralCount;
+    mapping(address => mapping(uint256 => uint256)) public userAscensionBonusReferralSalesTotal;
+    mapping(address => mapping(uint256 => uint256)) public userAscensionBonusReferralRewardsClaimed;

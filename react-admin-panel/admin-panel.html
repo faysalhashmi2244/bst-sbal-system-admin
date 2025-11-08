@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enhanced Node Packages Admin Panel</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@chakra-ui/css@2.1.2/dist/chakra.min.css">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: #f7fafc;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: white;
+      padding: 1rem 1.5rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+    }
+    
+    .nav-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #2b6cb0;
+    }
+    
+    .help-button {
+      padding: 0.3rem 0.7rem;
+      background-color: #ebf8ff;
+      color: #2b6cb0;
+      border: 1px solid #bee3f8;
+      border-radius: 0.25rem;
+      font-size: 0.8rem;
+      margin-left: 1rem;
+      cursor: pointer;
+    }
+    
+    .wallet-button {
+      padding: 0.5rem 1rem;
+      background-color: #3182ce;
+      color: white;
+      border: none;
+      border-radius: 0.25rem;
+      cursor: pointer;
+    }
+    
+    .tabs {
+      margin-top: 2rem;
+    }
+    
+    .tab-list {
+      display: flex;
+      border-bottom: 1px solid #e2e8f0;
+      margin-bottom: 1rem;
+    }
+    
+    .tab {
+      padding: 0.75rem 1.5rem;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+    }
+    
+    .tab.active {
+      color: #3182ce;
+      border-bottom: 2px solid #3182ce;
+    }
+    
+    .tab-panel {
+      background: white;
+      padding: 2rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    
+    .card {
+      background: white;
+      border-radius: 0.5rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .card-header {
+      font-size: 1.25rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      color: #2d3748;
+    }
+    
+    .text-muted {
+      color: #718096;
+    }
+    
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    .flex {
+      display: flex;
+    }
+    
+    .justify-end {
+      justify-content: flex-end;
+    }
+    
+    .mb-4 {
+      margin-bottom: 1rem;
+    }
+    
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    
+    .form-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+    
+    .form-input {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #e2e8f0;
+      border-radius: 0.25rem;
+    }
+    
+    .btn {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 0.25rem;
+      cursor: pointer;
+    }
+    
+    .btn-primary {
+      background-color: #3182ce;
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background-color: #2b6cb0;
+    }
+    
+    .alert {
+      padding: 1rem;
+      border-radius: 0.25rem;
+      margin-bottom: 1rem;
+    }
+    
+    .alert-info {
+      background-color: #ebf8ff;
+      color: #2b6cb0;
+      border: 1px solid #bee3f8;
+    }
+    
+    .alert-warning {
+      background-color: #fffaf0;
+      color: #c05621;
+      border: 1px solid #feebc8;
+    }
+    
+    .badge {
+      display: inline-block;
+      padding: 0.25em 0.5em;
+      font-size: 0.75em;
+      font-weight: 700;
+      border-radius: 9999px;
+    }
+    
+    .badge-red {
+      background-color: #fed7d7;
+      color: #e53e3e;
+    }
+    
+    .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: help;
+    }
+    
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      width: 200px;
+      background-color: #2d3748;
+      color: white;
+      text-align: center;
+      border-radius: 6px;
+      padding: 0.5rem;
+      position: absolute;
+      z-index: 1;
+      bottom: 125%;
+      left: 50%;
+      margin-left: -100px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+    }
+    
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+    }
+    
+    .modal-content {
+      background-color: white;
+      margin: 15% auto;
+      padding: 2rem;
+      border-radius: 0.5rem;
+      max-width: 600px;
+    }
+    
+    .close {
+      float: right;
+      font-size: 1.5rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    
+    .help-section {
+      margin-bottom: 1.5rem;
+    }
+    
+    .help-title {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    
+    .help-list {
+      margin-left: 1.5rem;
+    }
+    
+    .help-list li {
+      margin-bottom: 0.5rem;
+    }
+    
+    .divider {
+      height: 1px;
+      background-color: #e2e8f0;
+      margin: 1.5rem 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="flex">
+      <div class="nav-title">Node Packages Admin</div>
+      <button class="help-button" onclick="openHelpModal()">Help</button>
+    </div>
+    <div>
+      <button class="wallet-button" id="connectWalletBtn">Connect Wallet</button>
+    </div>
+  </div>
+  
+  <div class="container">
+    <div id="networkStatus" class="alert alert-warning" style="display: none;">
+      <strong>Wrong Network:</strong> Please switch to Base Sepolia Testnet (Chain ID: 84532)
+      <button class="btn btn-primary" style="margin-left: 1rem;" onclick="switchNetwork()">Switch Network</button>
+    </div>
+    
+    <div class="flex justify-end mb-4">
+      <button class="btn btn-primary" id="refreshDataBtn">
+        <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 0.5rem; display: inline-block; vertical-align: middle;">
+          <path d="M4 12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12C20 16.4183 16.4183 20 12 20C9.25022 20 6.82447 18.5799 5.38639 16.4194" stroke="currentColor" strokeWidth="2" strokeLinecap="round"></path>
+          <path d="M9 4.5L4 4L4 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+        </svg>
+        Refresh Data
+      </button>
+    </div>
+    
+    <div class="tabs">
+      <div class="tab-list">
+        <div class="tab active" onclick="showTab(0)">Node Packages</div>
+        <div class="tab" onclick="showTab(1)">Referral Settings</div>
+        <div class="tab" onclick="showTab(2)">Prosperity Fund</div>
+      </div>
+      
+      <div class="tab-panels">
+        <div class="tab-panel" id="node-packages-panel">
+          <h2>Node Packages Management</h2>
+          <p class="text-muted">Create and manage node packages that users can purchase with tokens.</p>
+          
+          <div class="alert alert-info">
+            Please connect your wallet to view and manage node packages. Only the contract owner can modify packages.
+          </div>
+          
+          <div class="card">
+            <div class="card-header">Create New Node Package</div>
+            <div class="form-group">
+              <label class="form-label">Package Name</label>
+              <input type="text" class="form-input" placeholder="Enter package name">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Price (in tokens)</label>
+              <input type="number" class="form-input" placeholder="Enter price in tokens">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Duration (in seconds)</label>
+              <input type="number" class="form-input" placeholder="Enter duration in seconds">
+              <small class="text-muted">E.g., 2592000 for 30 days</small>
+            </div>
+            <div class="form-group">
+              <label class="form-label">ROI Percentage</label>
+              <input type="number" class="form-input" placeholder="Enter ROI percentage">
+              <small class="text-muted">E.g., 2000 for 20% (2000 ÷ 100 = 20%)</small>
+            </div>
+            <button class="btn btn-primary">Create Package</button>
+          </div>
+        </div>
+        
+        <div class="tab-panel" style="display: none;" id="referral-settings-panel">
+          <h2>Referral Settings</h2>
+          <p class="text-muted">Configure reward percentages for the seven-level referral structure and bulk referral bonuses.</p>
+          
+          <div class="alert alert-info">
+            Please connect your wallet to view and manage referral settings. Only the contract owner can modify these settings.
+          </div>
+          
+          <h3>Seven-Level Referral Percentages</h3>
+          <p class="text-muted">
+            When a user purchases a node package through a referral link, referrers up to 7 levels above them receive rewards based on these percentages.
+            <span class="tooltip">
+              <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle;">
+                <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+                <path d="M12 16V12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+                <path d="M12 8H12.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+              </svg>
+              <span class="tooltip-text">Configure reward percentages for each level in the MLM referral structure. Higher percentages mean larger rewards for referrers.</span>
+            </span>
+          </p>
+          
+          <div class="grid">
+            <div class="card">
+              <div class="card-header" style="background-color: #ebf8ff; padding: 0.5rem; margin: -1.5rem -1.5rem 1rem -1.5rem; border-radius: 0.5rem 0.5rem 0 0;">Level 1</div>
+              <div>
+                <p><strong>Current Percentage:</strong> <span>10%</span></p>
+                <p class="text-muted">Reward for Level 1 referrers</p>
+                <div class="form-group">
+                  <label class="form-label">New Percentage</label>
+                  <input type="number" class="form-input" placeholder="Enter new percentage" min="0" max="100">
+                </div>
+                <button class="btn btn-primary" style="width: 100%;">Update Level 1</button>
+              </div>
+            </div>
+            
+            <div class="card">
+              <div class="card-header" style="background-color: #ebf8ff; padding: 0.5rem; margin: -1.5rem -1.5rem 1rem -1.5rem; border-radius: 0.5rem 0.5rem 0 0;">Level 2</div>
+              <div>
+                <p><strong>Current Percentage:</strong> <span>3%</span></p>
+                <p class="text-muted">Reward for Level 2 referrers</p>
+                <div class="form-group">
+                  <label class="form-label">New Percentage</label>
+                  <input type="number" class="form-input" placeholder="Enter new percentage" min="0" max="100">
+                </div>
+                <button class="btn btn-primary" style="width: 100%;">Update Level 2</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="tab-panel" style="display: none;" id="prosperity-fund-panel">
+          <h2>Prosperity Fund Management</h2>
+          <p class="text-muted">Configure and distribute the Prosperity Fund to reward users in the ecosystem.</p>
+          
+          <div class="alert alert-info">
+            Please connect your wallet to view and manage the Prosperity Fund. Only the contract owner can modify these settings.
+          </div>
+          
+          <div class="card">
+            <div class="card-header">Prosperity Fund Status</div>
+            <p><strong>Current Balance:</strong> <span>0 Tokens</span></p>
+            <p><strong>Distribution Period:</strong> <span>30 days</span></p>
+            <p><strong>Last Distribution:</strong> <span>Never</span></p>
+            <p><strong>Fund Status:</strong> <span>Enabled</span></p>
+            
+            <div class="divider"></div>
+            
+            <button class="btn btn-primary">Distribute Fund Now</button>
+          </div>
+          
+          <div class="card">
+            <div class="card-header">Update Fund Settings</div>
+            <div class="form-group">
+              <label class="form-label">Distribution Period (in seconds)</label>
+              <input type="number" class="form-input" placeholder="Enter period in seconds">
+              <small class="text-muted">E.g., 2592000 for 30 days</small>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Fund Status</label>
+              <select class="form-input">
+                <option>Enabled</option>
+                <option>Disabled</option>
+              </select>
+            </div>
+            <button class="btn btn-primary">Update Settings</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Help Modal -->
+  <div id="helpModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeHelpModal()">&times;</span>
+      <h2>Admin Panel Guide</h2>
+      
+      <div class="help-section">
+        <div class="help-title">Getting Started</div>
+        <ul class="help-list">
+          <li>Click "Connect Wallet" to connect your MetaMask wallet</li>
+          <li>Ensure you're connected to Base Sepolia Testnet (ChainID: 84532)</li>
+          <li>Your wallet must be the contract owner to use administrative functions</li>
+        </ul>
+      </div>
+      
+      <div class="divider"></div>
+      
+      <div class="help-section">
+        <div class="help-title">Administrative Functions</div>
+        <ul class="help-list">
+          <li><strong>Node Packages</strong>: Create, update, and manage node packages</li>
+          <li><strong>Referral Settings</strong>: Configure seven-level and bulk referral rewards</li>
+          <li><strong>Prosperity Fund</strong>: Manage fund settings and distribution</li>
+        </ul>
+      </div>
+      
+      <div class="divider"></div>
+      
+      <div class="help-section">
+        <div class="help-title">Troubleshooting</div>
+        <ul class="help-list">
+          <li>If transactions fail, check that you're on the correct network</li>
+          <li>Ensure your wallet has enough Base Sepolia ETH for gas fees</li>
+          <li>After network changes, you may need to reconnect your wallet</li>
+        </ul>
+      </div>
+      
+      <button class="btn btn-primary" onclick="closeHelpModal()">Close</button>
+    </div>
+  </div>
+  
+  <script>
+    // Tab switching
+    function showTab(index) {
+      const tabs = document.querySelectorAll('.tab');
+      const panels = document.querySelectorAll('.tab-panel');
+      
+      // Update tab styles
+      tabs.forEach((tab, i) => {
+        if (i === index) {
+          tab.classList.add('active');
+        } else {
+          tab.classList.remove('active');
+        }
+      });
+      
+      // Show/hide panels
+      panels.forEach((panel, i) => {
+        if (i === index) {
+          panel.style.display = 'block';
+        } else {
+          panel.style.display = 'none';
+        }
+      });
+    }
+    
+    // Help modal
+    function openHelpModal() {
+      document.getElementById('helpModal').style.display = 'block';
+    }
+    
+    function closeHelpModal() {
+      document.getElementById('helpModal').style.display = 'none';
+    }
+    
+    // Network switching
+    function switchNetwork() {
+      alert('This would request a network switch to Base Sepolia Testnet in a real implementation');
+    }
+    
+    // Connect wallet button
+    document.getElementById('connectWalletBtn').addEventListener('click', function() {
+      alert('This would connect to MetaMask or another Web3 wallet in a real implementation');
+    });
+    
+    // Refresh data button
+    document.getElementById('refreshDataBtn').addEventListener('click', function() {
+      alert('This would refresh blockchain data in a real implementation');
+    });
+    
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+      const modal = document.getElementById('helpModal');
+      if (event.target === modal) {
+        modal.style.display = 'none';
+      }
+    };
+  </script>
+</body>
+</html>

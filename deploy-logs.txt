@@ -1,0 +1,42 @@
+tarting migrations...
+======================
+> Network name:    'baseSepolia'
+> Network id:      84532
+> Block gas limit: 60000000 (0x3938700)
+
+
+1_initial_migration.js
+======================
+   -------------------------------------
+   > Total cost:                   0 ETH
+
+
+2_deploy_node_packages.js
+=========================
+NodeToken deployed at 0x35024799A05Ed370CE0f8F9b803A5BC0c072E854
+
+   Deploying 'NodePackages'
+   ------------------------
+   > transaction hash:    0x9982e82864b006658b421594f8c52b00914530fcce4417394515a132027bde95
+   > Blocks: 4            Seconds: 9
+   > contract address:    0x271d19C69fF93F9FaB2E35bcEb31A871A9d62657
+   > block number:        26419958
+   > block timestamp:     1748608204
+   > account:             0xc426A5300dCd57D8E448DAEda6FA1b583f36604E
+   > balance:             0.516266084651604585
+   > gas used:            3700847 (0x38786f)
+   > gas price:           2.90996098 gwei
+   > value sent:          0 ETH
+   > total cost:          0.01076932036295006 ETH
+
+NodePackages deployed at 0x271d19C69fF93F9FaB2E35bcEb31A871A9d62657
+Initialized 11 node packages
+Transferred 1000000 tokens to the NodePackages contract for rewards
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:     0.01076932036295006 ETH
+
+Summary
+=======
+> Total deployments:   1
+> Final cost:          0.01076932036295006 ETH

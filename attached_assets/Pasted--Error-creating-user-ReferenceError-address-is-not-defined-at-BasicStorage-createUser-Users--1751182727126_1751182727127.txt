@@ -1,0 +1,78 @@
+
+Error creating user: ReferenceError: address is not defined
+    at BasicStorage.createUser (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/basic-storage.js:131:20)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/api.js:149:18
+Error creating user: ReferenceError: address is not defined
+    at BasicStorage.createUser (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/basic-storage.js:131:20)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/api.js:149:18
+Error creating user: ReferenceError: address is not defined
+    at BasicStorage.createUser (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/basic-storage.js:131:20)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/api.js:149:18
+Error creating user: ReferenceError: address is not defined
+    at BasicStorage.createUser (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/basic-storage.js:131:20)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/api.js:149:18
+Error creating user: ReferenceError: address is not defined
+    at BasicStorage.createUser (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/basic-storage.js:131:20)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/api.js:149:18
+Error creating user: ReferenceError: address is not defined
+    at BasicStorage.createUser (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/basic-storage.js:131:20)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/api.js:149:18
+Error creating user: ReferenceError: address is not defined
+    at BasicStorage.createUser (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/basic-storage.js:131:20)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/api.js:149:18
+Error creating user: ReferenceError: address is not defined
+    at BasicStorage.createUser (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/basic-storage.js:131:20)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/api.js:149:18
+Error creating user: ReferenceError: address is not defined
+    at BasicStorage.createUser (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/basic-storage.js:131:20)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/api.js:149:18
+Error creating user: ReferenceError: address is not defined
+    at BasicStorage.createUser (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/basic-storage.js:131:20)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/api.js:149:18
+Error creating user: ReferenceError: address is not defined
+    at BasicStorage.createUser (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/basic-storage.js:131:20)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/api.js:149:18
+Error creating user: ReferenceError: address is not defined
+    at BasicStorage.createUser (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/basic-storage.js:131:20)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/api.js:149:18
+Error creating user: ReferenceError: address is not defined
+    at BasicStorage.createUser (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/basic-storage.js:131:20)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/api.js:149:18
+Error creating user: ReferenceError: address is not defined
+    at BasicStorage.createUser (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/basic-storage.js:131:20)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/api.js:149:18
+Error creating user: ReferenceError: address is not defined
+    at BasicStorage.createUser (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/basic-storage.js:131:20)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/api.js:149:18
+Error creating user: ReferenceError: address is not defined
+    at BasicStorage.createUser (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/basic-storage.js:131:20)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/api.js:149:18
+Error creating user: ReferenceError: address is not defined
+    at BasicStorage.createUser (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/basic-storage.js:131:20)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/api.js:149:18
+Error creating user: ReferenceError: address is not defined
+    at BasicStorage.createUser (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/basic-storage.js:131:20)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/api.js:149:18
+Error creating user: ReferenceError: address is not defined
+    at BasicStorage.createUser (/Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/basic-storage.js:131:20)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/mudaseriqbal/Documents/bsl/alffilateNetwork1/server/api.js:149:18
+Error creating user: ReferenceError: address is not def

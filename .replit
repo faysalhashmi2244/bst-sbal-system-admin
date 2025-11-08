@@ -1,0 +1,110 @@
+modules = ["nodejs-20"]
+
+[nix]
+channel = "stable-24_05"
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "TestWithGanache"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "TestNodePackagesCustom"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "UserEventsLogger"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "APIServer"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "ContinuousDataSync"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "ReactAdminPanel"
+
+[[workflows.workflow]]
+name = "TestWithGanache"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx ganache-cli &>/dev/null & sleep 5 && npx truffle test"
+
+[[workflows.workflow]]
+name = "TestNodePackagesCustom"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx ganache-cli -p 8546 &>/dev/null & sleep 5 && npx truffle exec run_tests.js --network custom"
+waitForPort = 8546
+
+[[workflows.workflow]]
+name = "UserEventsLogger"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "node user_events_logger.js"
+
+[[workflows.workflow]]
+name = "APIServer"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "node server/start-api.js"
+waitForPort = 3001
+
+[[workflows.workflow]]
+name = "ContinuousDataSync"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "node server/continuous-data-sync.js"
+
+[[workflows.workflow]]
+name = "ReactAdminPanel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd react-admin-panel && PORT=5000 HOST=0.0.0.0 npm start"
+waitForPort = 5000
+
+[deployment]
+run = ["sh", "-c", "npm install -g truffle @openzeppelin/test-helpers && truffle develop --port 5000"]
+
+[[ports]]
+localPort = 3000
+externalPort = 3000
+
+[[ports]]
+localPort = 3001
+externalPort = 3002
+
+[[ports]]
+localPort = 5000
+externalPort = 5000
+
+[[ports]]
+localPort = 5001
+externalPort = 3001
+
+[[ports]]
+localPort = 9545
+externalPort = 80

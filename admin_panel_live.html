@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Node Packages Admin Panel</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { 
+      font-family: system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+      padding: 0;
+      margin: 0;
+      color: #333;
+      background-color: #f8f9fa;
+    }
+    .header {
+      background-color: #3182ce;
+      color: white;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .card {
+      margin-bottom: 20px;
+      border: none;
+      box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+      border-radius: 0.5rem;
+      overflow: hidden;
+    }
+    .card-header {
+      background-color: #f8f9fa;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      padding: 1rem;
+    }
+    .text-info-bg {
+      background-color: #e3f2fd;
+      color: #0d6efd;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+    .nav-tabs {
+      margin-bottom: 20px;
+      border-bottom: 1px solid #dee2e6;
+    }
+    .nav-link {
+      color: #495057;
+      border: 1px solid transparent;
+      border-top-left-radius: 0.25rem;
+      border-top-right-radius: 0.25rem;
+      padding: 0.5rem 1rem;
+      transition: all 0.2s;
+    }
+    .nav-link.active {
+      color: #3182ce;
+      background-color: #fff;
+      border-color: #dee2e6 #dee2e6 #fff;
+    }
+    .tab-content {
+      padding: 20px 0;
+    }
+    .tab-pane {
+      display: none;
+    }
+    .tab-pane.active {
+      display: block;
+    }
+    .status-indicator {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 5px;
+    }
+    .status-active {
+      background-color: #28a745;
+    }
+    .status-inactive {
+      background-color: #dc3545;
+    }
+    .contract-address {
+      font-family: monospace;
+      background-color: #f1f1f1;
+      padding: 2px 5px;
+      border-radius: 3px;
+      word-break: break-all;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col">
+          <h2 class="mb-0">Node Packages Admin Panel</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="card mb-4">
+      <div class="card-body">
+        <p class="text-info-bg">This admin panel provides information about the Node Packages smart contracts deployed on Base Sepolia testnet.</p>
+      </div>
+    </div>
+    
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Dashboard</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="packages-tab" data-bs-toggle="tab" data-bs-target="#packages" type="button" role="tab" aria-controls="packages" aria-selected="false">Node Packages</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="referrals-tab" data-bs-toggle="tab" data-bs-target="#referrals" type="button" role="tab" aria-controls="referrals" aria-selected="false">Referral Settings</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="fund-tab" data-bs-toggle="tab" data-bs-target="#fund" type="button" role="tab" aria-controls="fund" aria-selected="false">Prosperity Fund</button>
+      </li>
+    </ul>
+    
+    <div class="tab-content" id="myTabContent">
+      <!-- Dashboard Tab -->
+      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="mb-0">Contract Information</h5>
+              </div>
+              <div class="card-body">
+                <p><strong>Network:</strong> <span class="badge bg-primary">Base Sepolia Testnet</span></p>
+                <p><strong>NodeToken:</strong> <a href="https://sepolia.basescan.org/address/0x98345dd7453228169A978eE0Aca0306EF76481bF" target="_blank" class="contract-address">0x98345dd7453228169A978eE0Aca0306EF76481bF</a></p>
+                <p><strong>NodePackages:</strong> <a href="https://sepolia.basescan.org/address/0x902416B2Fd38b42691b9290ecc26Ad12E87616b7" target="_blank" class="contract-address">0x902416B2Fd38b42691b9290ecc26Ad12E87616b7</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="mb-0">Quick Stats</h5>
+              </div>
+              <div class="card-body">
+                <p><strong>Active Node Packages:</strong> <span>11</span></p>
+                <p><strong>Prosperity Fund Balance:</strong> <span>1.0 ETH</span></p>
+                <p><strong>Next Distribution:</strong> <span>In 20 days</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Node Packages Tab -->
+      <div class="tab-pane fade" id="packages" role="tabpanel" aria-labelledby="packages-tab">
+        <h4 class="mb-4">Node Packages</h4>
+        
+        <div class="text-info-bg mb-4">
+          This section displays the available node packages for purchase. Each package has a set price, duration, and ROI percentage.
+        </div>
+        
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price (Tokens)</th>
+                <th>Duration</th>
+                <th>ROI %</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Starter Node</td>
+                <td>100</td>
+                <td>30 days</td>
+                <td>200%</td>
+                <td><span class="status-indicator status-active"></span> Active</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Standard Node</td>
+                <td>200</td>
+                <td>30 days</td>
+                <td>250%</td>
+                <td><span class="status-indicator status-active"></span> Active</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Premium Node</td>
+                <td>500</td>
+                <td>30 days</td>
+                <td>300%</td>
+                <td><span class="status-indicator status-active"></span> Active</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>Bronze Node</td>
+                <td>1,000</td>
+                <td>60 days</td>
+                <td>350%</td>
+                <td><span class="status-indicator status-active"></span> Active</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>Silver Node</td>
+                <td>2,500</td>
+                <td>60 days</td>
+                <td>400%</td>
+                <td><span class="status-indicator status-active"></span> Active</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>Gold Node</td>
+                <td>5,000</td>
+                <td>90 days</td>
+                <td>450%</td>
+                <td><span class="status-indicator status-active"></span> Active</td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td>Platinum Node</td>
+                <td>10,000</td>
+                <td>90 days</td>
+                <td>500%</td>
+                <td><span class="status-indicator status-active"></span> Active</td>
+              </tr>
+              <tr>
+                <td>8</td>
+                <td>Diamond Node</td>
+                <td>25,000</td>
+                <td>120 days</td>
+                <td>600%</td>
+                <td><span class="status-indicator status-active"></span> Active</td>
+              </tr>
+              <tr>
+                <td>9</td>
+                <td>Ruby Node</td>
+                <td>50,000</td>
+                <td>120 days</td>
+                <td>700%</td>
+                <td><span class="status-indicator status-active"></span> Active</td>
+              </tr>
+              <tr>
+                <td>10</td>
+                <td>Emerald Node</td>
+                <td>100,000</td>
+                <td>180 days</td>
+                <td>800%</td>
+                <td><span class="status-indicator status-active"></span> Active</td>
+              </tr>
+              <tr>
+                <td>11</td>
+                <td>Sapphire Node</td>
+                <td>250,000</td>
+                <td>180 days</td>
+                <td>1000%</td>
+                <td><span class="status-indicator status-active"></span> Active</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <!-- Referral Settings Tab -->
+      <div class="tab-pane fade" id="referrals" role="tabpanel" aria-labelledby="referrals-tab">
+        <h4 class="mb-4">Referral Settings</h4>
+        
+        <div class="text-info-bg mb-4">
+          The system implements a seven-level referral structure with configurable reward percentages. Each level earns a percentage of the purchase price when a new user joins.
+        </div>
+        
+        <div class="card mb-4">
+          <div class="card-header">
+            <h5 class="mb-0">Seven-Level Percentages</h5>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-4 col-lg-3 mb-3">
+                <div class="card">
+                  <div class="card-body text-center">
+                    <h5 class="card-title">Level 1</h5>
+                    <h3 class="mb-0">10%</h3>
+                    <p class="text-muted">Direct referrer</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-lg-3 mb-3">
+                <div class="card">
+                  <div class="card-body text-center">
+                    <h5 class="card-title">Level 2</h5>
+                    <h3 class="mb-0">3%</h3>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-lg-3 mb-3">
+                <div class="card">
+                  <div class="card-body text-center">
+                    <h5 class="card-title">Level 3</h5>
+                    <h3 class="mb-0">2%</h3>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-lg-3 mb-3">
+                <div class="card">
+                  <div class="card-body text-center">
+                    <h5 class="card-title">Level 4</h5>
+                    <h3 class="mb-0">2%</h3>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-lg-3 mb-3">
+                <div class="card">
+                  <div class="card-body text-center">
+                    <h5 class="card-title">Level 5</h5>
+                    <h3 class="mb-0">1%</h3>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-lg-3 mb-3">
+                <div class="card">
+                  <div class="card-body text-center">
+                    <h5 class="card-title">Level 6</h5>
+                    <h3 class="mb-0">1%</h3>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-lg-3 mb-3">
+                <div class="card">
+                  <div class="card-body text-center">
+                    <h5 class="card-title">Level 7</h5>
+                    <h3 class="mb-0">1%</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-header">
+            <h5 class="mb-0">Bulk Referral Bonus</h5>
+          </div>
+          <div class="card-body">
+            <p>Users earn an additional <strong>10% bonus</strong> after referring <strong>10 users</strong> to each package.</p>
+            <p>This creates an incentive for continued referrals and increased network growth.</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Prosperity Fund Tab -->
+      <div class="tab-pane fade" id="fund" role="tabpanel" aria-labelledby="fund-tab">
+        <h4 class="mb-4">Prosperity Fund</h4>
+        
+        <div class="text-info-bg mb-4">
+          The Prosperity Fund collects 10% of all purchase amounts and distributes them to the community periodically.
+        </div>
+        
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="mb-0">Fund Status</h5>
+              </div>
+              <div class="card-body">
+                <h3>1.0 ETH</h3>
+                <p class="text-muted">Current fund balance</p>
+                
+                <div class="alert alert-success mt-3">
+                  <strong>Enabled:</strong> 10% of all purchases are contributed to the fund
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="mb-0">Distribution Settings</h5>
+              </div>
+              <div class="card-body">
+                <div class="mb-3">
+                  <strong>Distribution Period:</strong> 30 days
+                </div>
+                
+                <div class="mb-3">
+                  <strong>Last Distribution:</strong> 10 days ago
+                </div>
+                
+                <div class="mb-3">
+                  <strong>Next Distribution:</strong> In 20 days
+                </div>
+                
+                <div class="alert alert-info">
+                  All node owners receive a share of the fund proportional to their investment.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Tab functionality
+      const tabButtons = document.querySelectorAll('[data-bs-toggle="tab"]');
+      
+      tabButtons.forEach(function(button) {
+        button.addEventListener('click', function(event) {
+          event.preventDefault();
+          
+          // Remove active class from all tab buttons
+          tabButtons.forEach(btn => {
+            btn.classList.remove('active');
+            btn.setAttribute('aria-selected', 'false');
+          });
+          
+          // Add active class to clicked button
+          button.classList.add('active');
+          button.setAttribute('aria-selected', 'true');
+          
+          // Hide all tab panes
+          const tabPanes = document.querySelectorAll('.tab-pane');
+          tabPanes.forEach(pane => {
+            pane.classList.remove('show', 'active');
+          });
+          
+          // Show the target tab pane
+          const targetId = button.getAttribute('data-bs-target');
+          const targetPane = document.querySelector(targetId);
+          targetPane.classList.add('show', 'active');
+        });
+      });
+    });
+  </script>
+</body>
+</html>

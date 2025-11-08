@@ -1,0 +1,101 @@
+I need to develop a smart contract for a node-based affiliate system using Solidity and Truffle Suite. The contract should implement the following functionality:
+
+## Node Packages Structure
+The system should offer these node levels (stored in a struct with these properties):
+- Node ID (uint)
+- Name (string)
+- Price (uint in wei)
+- Duration (uint in days)
+- Base Reward (uint in wei)
+- ROI percentage (uint)
+- Active status (bool)
+
+Initial packages (prices should be converted to wei equivalent):
+
+1. 🔥 Ignite Node
+   - Price: $100 (100000000000000000000 wei for $100 @ $1 = 1e18 wei)
+   - Duration: 20 days
+   - Base Reward: $20 (20000000000000000000 wei)
+   - ROI: 20%
+
+2. 🔥 Blaze Node
+   - Price: $200 
+   - Duration: 25 days
+   - Base Reward: $45
+   - ROI: 22.5%
+
+3. ⚡️ Surge Node
+   - Price: $400
+   - Duration: 30 days
+   - Base Reward: $100
+   - ROI: 25%
+
+4. ⚡️ Flux Node
+   - Price: $800
+   - Duration: 35 days
+   - Base Reward: $220
+   - ROI: 27.5%
+
+5. ⚙️ Axis Node
+   - Price: $1,600
+   - Duration: 40 days
+   - Base Reward: $460
+   - ROI: 28.75%
+
+6. ⚙️ Core Node
+   - Price: $3,200
+   - Duration: 45 days
+   - Base Reward: $990
+   - ROI: 30.9%
+
+7. 🌌 Sky Node
+   - Price: $5,000
+   - Duration: 50 days
+   - Base Reward: $1,600
+   - ROI: 32%
+
+8. ⏳ Vault Node
+   - Price: $7,500
+   - Duration: 55 days
+   - Base Reward: $2,475
+   - ROI: 33%
+
+9. 🛡️ Shield Node
+   - Price: $10,000
+   - Duration: 60 days
+   - Base Reward: $3,600
+   - ROI: 35%
+
+10. ☀️ Solar Node
+    - Price: $12,000
+    - Duration: 65 days
+    - Base Reward: $4,320
+    - ROI: 36%
+
+11. 🌠 Prime Node
+    - Price: $15,000
+    - Duration: 70 days
+    - Base Reward: $5,550
+    - ROI: 37%
+
+## Core Business Logic
+[Previous business logic remains unchanged...]
+
+## Node Package Management
+[Previous package management functions remain unchanged...]
+
+## Technical Requirements
+[Previous requirements remain unchanged...]
+
+## Additional Notes:
+1. All dollar amounts should be converted to wei values in the contract
+2. Price and reward values should use the same decimal precision
+3. Include a function to bulk add initial packages during deployment
+4. Duration should be stored in seconds (convert days to seconds)
+5. Implement price/reward calculations to prevent rounding errors
+
+Please provide:
+1. Complete Solidity contract with all 11 packages pre-configured
+2. Migration script that initializes all packages
+3. Comprehensive test cases covering all packages
+4. View functions to access package details

@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "db:push": "npx drizzle-kit push",
+    "db:studio": "npx drizzle-kit studio",
+    "api:start": "node server/api.js",
+    "event-listener:start": "node server/event-listener.js",
+    "sync:historical": "node server/sync-historical.js"
+  }
+}

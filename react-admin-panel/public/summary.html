@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Node-Based Affiliate System Project Summary</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+      background-color: #f8f9fa;
+    }
+    h1, h2, h3 {
+      color: #2c5282;
+    }
+    h1 {
+      border-bottom: 2px solid #eee;
+      padding-bottom: 10px;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .card {
+      background: white;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .header {
+      background: #3182ce;
+      color: white;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+    }
+    .section {
+      margin-bottom: 30px;
+    }
+    .check-mark {
+      color: #38a169;
+      font-weight: bold;
+    }
+    .address {
+      font-family: monospace;
+      background-color: #f1f1f1;
+      padding: 2px 5px;
+      border-radius: 3px;
+    }
+    .highlight {
+      background-color: #e6f7ff;
+      border-left: 4px solid #1890ff;
+      padding: 10px 15px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Node-Based Affiliate System Project Summary</h1>
+    </div>
+    
+    <div class="section">
+      <h2>Project Overview</h2>
+      <p>
+        This project implements a blockchain-powered affiliate management system using smart contracts. 
+        The system enables transparent and automated referral reward distribution with advanced 
+        incentive mechanisms.
+      </p>
+      
+      <div class="highlight">
+        <p><strong>Key Features:</strong></p>
+        <ul>
+          <li>Seven-level MLM referral structure with configurable reward percentages</li>
+          <li>Direct referral rewards (10% by default)</li>
+          <li>Bulk referral bonus system (10% after every 10 referrals)</li>
+          <li>Prosperity Fund for community rewards (collects 10% of purchases)</li>
+          <li>Rewards-based discount system for node purchases</li>
+          <li>Admin panel for contract management</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="section card">
+      <h2>Deployment Status</h2>
+      <p><span class="check-mark">✓</span> <strong>Network:</strong> Base Sepolia Testnet</p>
+      <p><span class="check-mark">✓</span> <strong>NodeToken:</strong> <span class="address">0x98345dd7453228169A978eE0Aca0306EF76481bF</span></p>
+      <p><span class="check-mark">✓</span> <strong>NodePackages:</strong> <span class="address">0x902416B2Fd38b42691b9290ecc26Ad12E87616b7</span></p>
+      <p><span class="check-mark">✓</span> <strong>Initialization:</strong> 11 node packages created with varying prices and ROI</p>
+      <p><span class="check-mark">✓</span> <strong>Funding:</strong> 1,000,000 tokens transferred to the contract for rewards</p>
+    </div>
+    
+    <div class="section card">
+      <h2>Smart Contract Implementation</h2>
+      
+      <h3>NodeToken Contract</h3>
+      <p>An ERC20 token used for purchasing node packages and distributing rewards.</p>
+      
+      <h3>NodePackages Contract</h3>
+      <p>The main contract that handles:</p>
+      <ul>
+        <li>Node package management (creation, updating, activation/deactivation)</li>
+        <li>User node purchases and reward calculations</li>
+        <li>Referral relationship tracking and reward distribution</li>
+        <li>Seven-level MLM structure management</li>
+        <li>Bulk referral bonus system</li>
+        <li>Prosperity Fund collection and distribution</li>
+        <li>Rewards-based discount purchases</li>
+      </ul>
+      
+      <h3>Key Functions</h3>
+      <ul>
+        <li><code>purchaseNode</code> - Allows users to purchase node packages with ERC20 tokens</li>
+        <li><code>purchaseNodeWithDiscount</code> - Enables discounted purchases using accumulated rewards</li>
+        <li><code>registerReferrer</code> - Establishes referral relationships and calculates rewards</li>
+        <li><code>calculateRewards</code> - Determines rewards based on time elapsed and ROI percentage</li>
+        <li><code>withdrawRewards</code> - Allows users to claim their earned rewards</li>
+        <li><code>distributeProsperityFund</code> - Distributes the community fund to eligible users</li>
+      </ul>
+    </div>
+    
+    <div class="section card">
+      <h2>Admin Panel</h2>
+      <p>
+        The admin panel provides an interface to manage the smart contracts on the Base Sepolia testnet.
+        It shows contract information, node packages, referral settings, and prosperity fund details.
+      </p>
+      
+      <h3>Current Default Settings</h3>
+      <ul>
+        <li><strong>Seven-Level Referral Percentages:</strong> 10%, 3%, 2%, 2%, 1%, 1%, 1%</li>
+        <li><strong>Bulk Referral Bonus:</strong> 10% after every 10 referrals</li>
+        <li><strong>Prosperity Fund:</strong> 10% of purchase price, distributed every 30 days</li>
+        <li><strong>Rewards Discount:</strong> Up to 90% discount based on available rewards</li>
+      </ul>
+    </div>
+    
+    <div class="section card">
+      <h2>Testing Overview</h2>
+      <p>Comprehensive test suite using Truffle and Ganache covering:</p>
+      <ul>
+        <li>Node package management functionality</li>
+        <li>Purchase and reward calculations</li>
+        <li>Seven-level referral distribution</li>
+        <li>Bulk referral bonus mechanics</li>
+        <li>Prosperity Fund contribution and distribution</li>
+        <li>Rewards-based discount system</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

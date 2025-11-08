@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Node Packages Admin Panel</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
+  <style>
+    body { 
+      font-family: system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+      padding: 0;
+      margin: 0;
+      color: #333;
+      background-color: #f8f9fa;
+    }
+    .header {
+      background-color: #3182ce;
+      color: white;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .card {
+      margin-bottom: 20px;
+      border: none;
+      box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+      border-radius: 0.5rem;
+      overflow: hidden;
+    }
+    .card-header {
+      background-color: #f8f9fa;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      padding: 1rem;
+    }
+    .text-info-bg {
+      background-color: #e3f2fd;
+      color: #0d6efd;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+    .function-card {
+      margin-bottom: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .function-card .card-header {
+      font-weight: 600;
+      background-color: #f1f8ff;
+    }
+    .required-field::after {
+      content: " *";
+      color: #dc3545;
+    }
+    .status-indicator {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 5px;
+    }
+    .status-success {
+      background-color: #28a745;
+    }
+    .status-error {
+      background-color: #dc3545;
+    }
+    .status-pending {
+      background-color: #ffc107;
+    }
+    .contract-address {
+      font-family: monospace;
+      background-color: #f1f1f1;
+      padding: 2px 5px;
+      border-radius: 3px;
+      word-break: break-all;
+    }
+    .transaction-hash {
+      font-family: monospace;
+      font-size: 0.85rem;
+      word-break: break-all;
+    }
+    .status-message {
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    .status-success-message {
+      background-color: #d4edda;
+      color: #155724;
+    }
+    .status-error-message {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+    .status-pending-message {
+      background-color: #fff3cd;
+      color: #856404;
+    }
+    .mb-20 {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col">
+          <h2 class="mb-0">Node Packages Admin Panel</h2>
+        </div>
+        <div class="col-auto">
+          <button id="connectWalletBtn" class="btn btn-light">Connect Wallet</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <p><strong>Network:</strong> <span id="networkName">Base Sepolia Testnet</span></p>
+            <p><strong>NodeToken:</strong> <span class="contract-address" id="nodeTokenAddress">0x98345dd7453228169A978eE0Aca0306EF76481bF</span></p>
+          </div>
+          <div class="col-md-6">
+            <p><strong>NodePackages:</strong> <span class="contract-address" id="nodePackagesAddress">0x902416B2Fd38b42691b9290ecc26Ad12E87616b7</span></p>
+            <p><strong>Connected Account:</strong> <span id="connectedAccount">Not connected</span></p>
+          </div>
+        </div>
+        <div id="ownerStatusContainer" class="alert alert-warning d-none">
+          You must be the contract owner to use admin functions.
+        </div>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-6">
+        <!-- Seven-Level Referral Settings -->
+        <div class="card function-card">
+          <div class="card-header">
+            Seven-Level Referral Settings
+          </div>
+          <div class="card-body">
+            <div id="currentReferralPercentages" class="mb-4">
+              <h6>Current Percentages:</h6>
+              <div class="table-responsive">
+                <table class="table table-sm">
+                  <thead>
+                    <tr>
+                      <th>Level</th>
+                      <th>Percentage</th>
+                    </tr>
+                  </thead>
+                  <tbody id="referralPercentagesTable">
+                    <!-- Will be filled by JavaScript -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            
+            <form id="updateReferralPercentageForm">
+              <div class="mb-3">
+                <label for="referralLevel" class="form-label required-field">Level</label>
+                <select class="form-select" id="referralLevel" required>
+                  <option value="0">Level 1</option>
+                  <option value="1">Level 2</option>
+                  <option value="2">Level 3</option>
+                  <option value="3">Level 4</option>
+                  <option value="4">Level 5</option>
+                  <option value="5">Level 6</option>
+                  <option value="6">Level 7</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="referralPercentage" class="form-label required-field">New Percentage</label>
+                <input type="number" class="form-control" id="referralPercentage" min="0" max="100" required>
+                <div class="form-text">Enter a value between 0 and 100</div>
+              </div>
+              <button type="submit" class="btn btn-primary" id="updateReferralBtn">Update</button>
+              <div id="updateReferralStatus" class="status-message d-none"></div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Bulk Referral Settings -->
+        <div class="card function-card">
+          <div class="card-header">
+            Ascension Referral Settings
+          </div>
+          <div class="card-body">
+            <div id="currentBulkReferralSettings" class="mb-4">
+              <h6>Current Settings:</h6>
+              <p><strong>Threshold:</strong> <span id="bulkReferralThreshold">10</span> referrals</p>
+              <p><strong>Reward Percentage:</strong> <span id="bulkReferralPercentage">10</span>%</p>
+            </div>
+            
+            <form id="updateBulkReferralForm">
+              <div class="mb-3">
+                <label for="bulkThreshold" class="form-label required-field">Threshold</label>
+                <input type="number" class="form-control" id="bulkThreshold" min="1" required>
+                <div class="form-text">Number of referrals required to trigger bulk reward</div>
+              </div>
+              <div class="mb-3">
+                <label for="bulkPercentage" class="form-label required-field">Reward Percentage</label>
+                <input type="number" class="form-control" id="bulkPercentage" min="0" max="100" required>
+                <div class="form-text">Percentage of total sales to reward</div>
+              </div>
+              <button type="submit" class="btn btn-primary" id="updateBulkReferralBtn">Update</button>
+              <div id="updateBulkReferralStatus" class="status-message d-none"></div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Rewards Discount Settings -->
+        <div class="card function-card">
+          <div class="card-header">
+            Rewards Discount Settings
+          </div>
+          <div class="card-body">
+            <div id="currentRewardsDiscountSettings" class="mb-4">
+              <h6>Current Settings:</h6>
+              <p><strong>Enabled:</strong> <span id="rewardsDiscountEnabled">Yes</span></p>
+              <p><strong>Discount Percentage:</strong> <span id="rewardsDiscountPercentage">10</span>%</p>
+            </div>
+            
+            <form id="updateRewardsDiscountForm">
+              <div class="mb-3">
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="discountEnabled">
+                  <label class="form-check-label" for="discountEnabled">Enable Rewards Discount</label>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="discountPercentage" class="form-label required-field">Discount Percentage</label>
+                <input type="number" class="form-control" id="discountPercentage" min="0" max="100" required>
+                <div class="form-text">Maximum percentage of node price that can be discounted</div>
+              </div>
+              <button type="submit" class="btn btn-primary" id="updateDiscountBtn">Update</button>
+              <div id="updateDiscountStatus" class="status-message d-none"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-6">
+        <!-- Prosperity Fund Settings -->
+        <div class="card function-card">
+          <div class="card-header">
+            Prosperity Fund Settings
+          </div>
+          <div class="card-body">
+            <div id="currentProsperityFundSettings" class="mb-4">
+              <h6>Current Settings:</h6>
+              <p><strong>Enabled:</strong> <span id="prosperityFundEnabled">Yes</span></p>
+              <p><strong>Contribution Percentage:</strong> <span id="prosperityFundPercentage">10</span>%</p>
+              <p><strong>Distribution Period:</strong> <span id="prosperityFundDistributionDays">30</span> days</p>
+              <p><strong>Current Balance:</strong> <span id="prosperityFundBalance">0</span> tokens</p>
+              <p><strong>Next Distribution:</strong> <span id="nextDistributionDate">Not set</span></p>
+            </div>
+            
+            <form id="updateProsperityFundForm">
+              <div class="mb-3">
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="fundEnabled">
+                  <label class="form-check-label" for="fundEnabled">Enable Prosperity Fund</label>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="fundPercentage" class="form-label required-field">Contribution Percentage</label>
+                <input type="number" class="form-control" id="fundPercentage" min="0" max="100" required>
+                <div class="form-text">Percentage of node purchase to contribute to fund</div>
+              </div>
+              <div class="mb-3">
+                <label for="distributionDays" class="form-label required-field">Distribution Period (days)</label>
+                <input type="number" class="form-control" id="distributionDays" min="1" required>
+              </div>
+              <button type="submit" class="btn btn-primary" id="updateFundBtn">Update</button>
+              <div id="updateFundStatus" class="status-message d-none"></div>
+            </form>
+
+            <div class="mt-4">
+              <h6>Distribute Prosperity Fund</h6>
+              <form id="distributeFundForm">
+                <div class="mb-3">
+                  <label for="distributionAddress" class="form-label required-field">Recipient Address</label>
+                  <input type="text" class="form-control" id="distributionAddress" required>
+                </div>
+                <button type="submit" class="btn btn-warning" id="distributeFundBtn">Distribute Fund</button>
+                <div id="distributeFundStatus" class="status-message d-none"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Node Package Management -->
+        <div class="card function-card">
+          <div class="card-header">
+            Node Package Management
+          </div>
+          <div class="card-body">
+            <div class="mb-4">
+              <h6>Node Packages:</h6>
+              <div class="table-responsive">
+                <table class="table table-sm">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Price</th>
+                      <th>Duration</th>
+                      <th>ROI</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody id="nodePackagesTable">
+                    <!-- Will be filled by JavaScript -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            
+            <form id="updateNodePackageStatusForm">
+              <div class="mb-3">
+                <label for="packageId" class="form-label required-field">Package ID</label>
+                <select class="form-select" id="packageId" required>
+                  <!-- Will be filled by JavaScript -->
+                </select>
+              </div>
+              <div class="mb-3">
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="packageActive">
+                  <label class="form-check-label" for="packageActive">Package Active</label>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary" id="updatePackageStatusBtn">Update Status</button>
+              <div id="updatePackageStatus" class="status-message d-none"></div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Token Management -->
+        <div class="card function-card">
+          <div class="card-header">
+            Token Management
+          </div>
+          <div class="card-body">
+            <div class="mb-4">
+              <h6>Contract Balance:</h6>
+              <p><span id="contractTokenBalance">0</span> tokens</p>
+            </div>
+            
+            <form id="withdrawTokensForm">
+              <div class="mb-3">
+                <label for="withdrawAmount" class="form-label required-field">Amount to Withdraw</label>
+                <input type="number" class="form-control" id="withdrawAmount" min="0" required>
+              </div>
+              <button type="submit" class="btn btn-danger" id="withdrawTokensBtn">Withdraw Tokens</button>
+              <div id="withdrawTokensStatus" class="status-message d-none"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const nodeTokenAddress = '0x98345dd7453228169A978eE0Aca0306EF76481bF';
+    const nodePackagesAddress = '0x902416B2Fd38b42691b9290ecc26Ad12E87616b7';
+    const chainId = '0x14a34'; // 84532 in hex for Base Sepolia
+    
+    // NodePackages contract ABI (partial, just what we need)
+    const nodePackagesABI = [
+      // View functions
+      {
+        "inputs": [],
+        "name": "getSevenLevelReferralPercentages",
+        "outputs": [{"internalType": "uint256[7]", "name": "", "type": "uint256[7]"}],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "owner",
+        "outputs": [{"internalType": "address", "name": "", "type": "address"}],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "bulkReferralThreshold",
+        "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "bulkReferralRewardPercentage",
+        "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "rewardsDiscountEnabled",
+        "outputs": [{"internalType": "bool", "name": "", "type": "bool"}],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "rewardsDiscountPercentage",
+        "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "prosperityFundEnabled",
+        "outputs": [{"internalType": "bool", "name": "", "type": "bool"}],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "prosperityFundPercentage",
+        "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "prosperityFundDistributionDays",
+        "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "prosperityFundBalance",
+        "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "lastProsperityFundDistribution",
+        "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "nodePackageCount",
+        "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
+        "name": "nodePackages",
+        "outputs": [
+          {"internalType": "uint256", "name": "id", "type": "uint256"},
+          {"internalType": "string", "name": "name", "type": "string"},
+          {"internalType": "uint256", "name": "price", "type": "uint256"},
+          {"internalType": "uint256", "name": "duration", "type": "uint256"},
+          {"internalType": "uint256", "name": "roiPercentage", "type": "uint256"},
+          {"internalType": "bool", "name": "isActive", "type": "bool"}
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      
+      // Write functions
+      {
+        "inputs": [{"internalType": "uint256", "name": "_index", "type": "uint256"}, {"internalType": "uint256", "name": "_percentage", "type": "uint256"}],
+        "name": "updateSevenLevelReferralPercentage",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [{"internalType": "uint256", "name": "_threshold", "type": "uint256"}, {"internalType": "uint256", "name": "_percentage", "type": "uint256"}],
+        "name": "updateBulkReferralSettings",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [{"internalType": "bool", "name": "_enabled", "type": "uint256"}, {"internalType": "uint256", "name": "_percentage", "type": "uint256"}],
+        "name": "updateRewardsDiscountSettings",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [{"internalType": "bool", "name": "_enabled", "type": "bool"}, {"internalType": "uint256", "name": "_percentage", "type": "uint256"}, {"internalType": "uint256", "name": "_distributionDays", "type": "uint256"}],
+        "name": "updateProsperityFundSettings",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [{"internalType": "address", "name": "_recipient", "type": "address"}],
+        "name": "distributeProsperityFund",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [{"internalType": "uint256", "name": "_id", "type": "uint256"}, {"internalType": "bool", "name": "_isActive", "type": "bool"}],
+        "name": "setNodePackageActive",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [{"internalType": "uint256", "name": "_amount", "type": "uint256"}],
+        "name": "withdrawTokens",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      }
+    ];
+    
+    // NodeToken contract ABI (minimal)
+    const nodeTokenABI = [
+      {
+        "inputs": [{"internalType": "address", "name": "account", "type": "address"}],
+        "name": "balanceOf",
+        "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
+        "stateMutability": "view",
+        "type": "function"
+      }
+    ];
+    
+    // Global variables
+    let web3;
+    let nodePackagesContract;
+    let nodeTokenContract;
+    let accounts = [];
+    let isOwner = false;
+    
+    // Helper function to format tokens (handling 18 decimal places)
+    function formatTokens(amount) {
+      return web3.utils.fromWei(amount, 'ether');
+    }
+    
+    // Helper function to check if user is owner
+    async function checkOwnership() {
+      if (!nodePackagesContract || accounts.length === 0) return false;
+      
+      try {
+        const owner = await nodePackagesContract.methods.owner().call();
+        isOwner = accounts[0].toLowerCase() === owner.toLowerCase();
+        
+        const ownerStatusContainer = document.getElementById('ownerStatusContainer');
+        if (isOwner) {
+          ownerStatusContainer.classList.add('d-none');
+        } else {
+          ownerStatusContainer.classList.remove('d-none');
+          ownerStatusContainer.innerText = 'You are not the contract owner. Admin functions are disabled.';
+          ownerStatusContainer.classList.remove('alert-warning');
+          ownerStatusContainer.classList.add('alert-danger');
+        }
+        
+        return isOwner;
+      } catch (error) {
+        console.error('Error checking ownership:', error);
+        return false;
+      }
+    }
+    
+    // Initialize UI with contract data
+    async function initializeUI() {
+      try {
+        if (!nodePackagesContract) return;
+        
+        // Load and display referral percentages
+        await loadReferralPercentages();
+        
+        // Load bulk referral settings
+        await loadBulkReferralSettings();
+        
+        // Load rewards discount settings
+        await loadRewardsDiscountSettings();
+        
+        // Load prosperity fund settings
+        await loadProsperityFundSettings();
+        
+        // Load node packages
+        await loadNodePackages();
+        
+        // Load contract token balance
+        await loadContractTokenBalance();
+        
+      } catch (error) {
+        console.error('Error initializing UI:', error);
+      }
+    }
+    
+    // Load and display referral percentages
+    async function loadReferralPercentages() {
+      try {
+        const percentages = await nodePackagesContract.methods.getSevenLevelReferralPercentages().call();
+        const tableBody = document.getElementById('referralPercentagesTable');
+        tableBody.innerHTML = '';
+        
+        percentages.forEach((percentage, index) => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>Level ${index + 1}</td>
+            <td>${percentage}%</td>
+          `;
+          tableBody.appendChild(row);
+        });
+      } catch (error) {
+        console.error('Error loading referral percentages:', error);
+      }
+    }
+    
+    // Load bulk referral settings
+    async function loadBulkReferralSettings() {
+      try {
+        const threshold = await nodePackagesContract.methods.bulkReferralThreshold().call();
+        const percentage = await nodePackagesContract.methods.bulkReferralRewardPercentage().call();
+        
+        document.getElementById('bulkReferralThreshold').innerText = threshold;
+        document.getElementById('bulkReferralPercentage').innerText = percentage;
+        document.getElementById('bulkThreshold').value = threshold;
+        document.getElementById('bulkPercentage').value = percentage;
+      } catch (error) {
+        console.error('Error loading bulk referral settings:', error);
+      }
+    }
+    
+    // Load rewards discount settings
+    async function loadRewardsDiscountSettings() {
+      try {
+        const enabled = await nodePackagesContract.methods.rewardsDiscountEnabled().call();
+        const percentage = await nodePackagesContract.methods.rewardsDiscountPercentage().call();
+        
+        document.getElementById('rewardsDiscountEnabled').innerText = enabled ? 'Yes' : 'No';
+        document.getElementById('rewardsDiscountPercentage').innerText = percentage;
+        document.getElementById('discountEnabled').checked = enabled;
+        document.getElementById('discountPercentage').value = percentage;
+      } catch (error) {
+        console.error('Error loading rewards discount settings:', error);
+      }
+    }
+    
+    // Load prosperity fund settings
+    async function loadProsperityFundSettings() {
+      try {
+        const enabled = await nodePackagesContract.methods.prosperityFundEnabled().call();
+        const percentage = await nodePackagesContract.methods.prosperityFundPercentage().call();
+        const distributionDays = await nodePackagesContract.methods.prosperityFundDistributionDays().call();
+        const balance = await nodePackagesContract.methods.prosperityFundBalance().call();
+        const lastDistribution = await nodePackagesContract.methods.lastProsperityFundDistribution().call();
+        
+        document.getElementById('prosperityFundEnabled').innerText = enabled ? 'Yes' : 'No';
+        document.getElementById('prosperityFundPercentage').innerText = percentage;
+        document.getElementById('prosperityFundDistributionDays').innerText = distributionDays;
+        document.getElementById('prosperityFundBalance').innerText = formatTokens(balance);
+        document.getElementById('fundEnabled').checked = enabled;
+        document.getElementById('fundPercentage').value = percentage;
+        document.getElementById('distributionDays').value = distributionDays;
+        
+        // Calculate next distribution date
+        if (lastDistribution > 0) {
+          const nextDistribution = parseInt(lastDistribution) + (parseInt(distributionDays) * 24 * 60 * 60);
+          const nextDate = new Date(nextDistribution * 1000);
+          document.getElementById('nextDistributionDate').innerText = nextDate.toLocaleString();
+        } else {
+          document.getElementById('nextDistributionDate').innerText = 'Not set';
+        }
+      } catch (error) {
+        console.error('Error loading prosperity fund settings:', error);
+      }
+    }
+    
+    // Load node packages
+    async function loadNodePackages() {
+      try {
+        const packageCount = await nodePackagesContract.methods.nodePackageCount().call();
+        const tableBody = document.getElementById('nodePackagesTable');
+        const packageIdSelect = document.getElementById('packageId');
+        
+        tableBody.innerHTML = '';
+        packageIdSelect.innerHTML = '';
+        
+        for (let i = 1; i <= packageCount; i++) {
+          const packageInfo = await nodePackagesContract.methods.nodePackages(i).call();
+          
+          // Add to table
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${packageInfo.id}</td>
+            <td>${packageInfo.name}</td>
+            <td>${formatTokens(packageInfo.price)}</td>
+            <td>${Math.floor(packageInfo.duration / (24 * 60 * 60))} days</td>
+            <td>${packageInfo.roiPercentage / 100}%</td>
+            <td>${packageInfo.isActive ? '<span class="badge bg-success">Active</span>' : '<span class="badge bg-danger">Inactive</span>'}</td>
+          `;
+          tableBody.appendChild(row);
+          
+          // Add to select dropdown
+          const option = document.createElement('option');
+          option.value = packageInfo.id;
+          option.innerText = `${packageInfo.id} - ${packageInfo.name}`;
+          option.dataset.active = packageInfo.isActive;
+          packageIdSelect.appendChild(option);
+        }
+        
+        // Set active status for the first package in the dropdown
+        if (packageCount > 0) {
+          const firstOption = packageIdSelect.options[0];
+          document.getElementById('packageActive').checked = firstOption.dataset.active === 'true';
+        }
+        
+        // Add change event listener to update active checkbox
+        packageIdSelect.addEventListener('change', function() {
+          const selectedOption = this.options[this.selectedIndex];
+          document.getElementById('packageActive').checked = selectedOption.dataset.active === 'true';
+        });
+      } catch (error) {
+        console.error('Error loading node packages:', error);
+      }
+    }
+    
+    // Load contract token balance
+    async function loadContractTokenBalance() {
+      try {
+        const balance = await nodeTokenContract.methods.balanceOf(nodePackagesAddress).call();
+        document.getElementById('contractTokenBalance').innerText = formatTokens(balance);
+      } catch (error) {
+        console.error('Error loading contract token balance:', error);
+      }
+    }
+    
+    // Connect wallet function
+    async function connectWallet() {
+      if (window.ethereum) {
+        try {
+          web3 = new Web3(window.ethereum);
+          
+          // Request accounts
+          accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+          
+          // Check network and switch if needed
+          const chainIdHex = await web3.eth.getChainId();
+          if (chainIdHex.toString() !== chainId && chainIdHex !== parseInt(chainId, 16)) {
+            try {
+              await window.ethereum.request({
+                method: 'wallet_switchEthereumChain',
+                params: [{ chainId }],
+              });
+              // Refresh accounts after switch
+              accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+            } catch (switchError) {
+              if (switchError.code === 4902) {
+                alert('Base Sepolia network needs to be added to your wallet');
+                try {
+                  await window.ethereum.request({
+                    method: 'wallet_addEthereumChain',
+                    params: [{
+                      chainId,
+                      chainName: 'Base Sepolia Testnet',
+                      nativeCurrency: { name: 'ETH', symbol: 'ETH', decimals: 18 },
+                      rpcUrls: ['https://sepolia.base.org'],
+                      blockExplorerUrls: ['https://sepolia.basescan.org'],
+                    }],
+                  });
+                  // Refresh accounts after adding network
+                  accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                } catch (addError) {
+                  console.error('Error adding network:', addError);
+                  alert('Failed to add Base Sepolia network');
+                }
+              } else {
+                console.error('Error switching network:', switchError);
+                alert('Failed to switch to Base Sepolia network');
+              }
+            }
+          }
+          
+          // Initialize contracts
+          nodePackagesContract = new web3.eth.Contract(nodePackagesABI, nodePackagesAddress);
+          nodeTokenContract = new web3.eth.Contract(nodeTokenABI, nodeTokenAddress);
+          
+          // Update UI
+          document.getElementById('connectedAccount').innerText = `${accounts[0].substring(0, 6)}...${accounts[0].substring(38)}`;
+          document.getElementById('connectWalletBtn').innerText = 'Connected';
+          document.getElementById('connectWalletBtn').classList.remove('btn-light');
+          document.getElementById('connectWalletBtn').classList.add('btn-success');
+          
+          // Check if user is owner
+          await checkOwnership();
+          
+          // Initialize UI with contract data
+          await initializeUI();
+          
+          // Set up event listeners
+          setupEventListeners();
+          
+          return true;
+        } catch (error) {
+          console.error('Error connecting wallet:', error);
+          alert('Failed to connect wallet: ' + error.message);
+          return false;
+        }
+      } else {
+        alert('Ethereum provider not found. Please install MetaMask.');
+        return false;
+      }
+    }
+    
+    // Set up form event listeners
+    function setupEventListeners() {
+      // Update referral percentage
+      document.getElementById('updateReferralPercentageForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        if (!isOwner) {
+          alert('Only the contract owner can update referral settings');
+          return;
+        }
+        
+        const level = document.getElementById('referralLevel').value;
+        const percentage = document.getElementById('referralPercentage').value;
+        
+        try {
+          showStatusMessage('updateReferralStatus', 'Updating referral percentage...', 'pending');
+          
+          const tx = await nodePackagesContract.methods.updateSevenLevelReferralPercentage(level, percentage).send({ from: accounts[0] });
+          
+          showStatusMessage('updateReferralStatus', `Successfully updated level ${parseInt(level) + 1} referral percentage to ${percentage}%.<br>Transaction: <a href="https://sepolia.basescan.org/tx/${tx.transactionHash}" target="_blank" class="transaction-hash">${tx.transactionHash}</a>`, 'success');
+          
+          // Reload referral percentages
+          await loadReferralPercentages();
+        } catch (error) {
+          console.error('Error updating referral percentage:', error);
+          showStatusMessage('updateReferralStatus', `Error updating referral percentage: ${error.message}`, 'error');
+        }
+      });
+      
+      // Update bulk referral settings
+      document.getElementById('updateBulkReferralForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        if (!isOwner) {
+          alert('Only the contract owner can update bulk referral settings');
+          return;
+        }
+        
+        const threshold = document.getElementById('bulkThreshold').value;
+        const percentage = document.getElementById('bulkPercentage').value;
+        
+        try {
+          showStatusMessage('updateBulkReferralStatus', 'Updating bulk referral settings...', 'pending');
+          
+          const tx = await nodePackagesContract.methods.updateBulkReferralSettings(threshold, percentage).send({ from: accounts[0] });
+          
+          showStatusMessage('updateBulkReferralStatus', `Successfully updated bulk referral settings to ${threshold} threshold and ${percentage}% reward.<br>Transaction: <a href="https://sepolia.basescan.org/tx/${tx.transactionHash}" target="_blank" class="transaction-hash">${tx.transactionHash}</a>`, 'success');
+          
+          // Reload bulk referral settings
+          await loadBulkReferralSettings();
+        } catch (error) {
+          console.error('Error updating bulk referral settings:', error);
+          showStatusMessage('updateBulkReferralStatus', `Error updating bulk referral settings: ${error.message}`, 'error');
+        }
+      });
+      
+      // Update rewards discount settings
+      document.getElementById('updateRewardsDiscountForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        if (!isOwner) {
+          alert('Only the contract owner can update rewards discount settings');
+          return;
+        }
+        
+        const enabled = document.getElementById('discountEnabled').checked;
+        const percentage = document.getElementById('discountPercentage').value;
+        
+        try {
+          showStatusMessage('updateDiscountStatus', 'Updating rewards discount settings...', 'pending');
+          
+          const tx = await nodePackagesContract.methods.updateRewardsDiscountSettings(enabled, percentage).send({ from: accounts[0] });
+          
+          showStatusMessage('updateDiscountStatus', `Successfully updated rewards discount settings to ${enabled ? 'enabled' : 'disabled'} with ${percentage}% discount.<br>Transaction: <a href="https://sepolia.basescan.org/tx/${tx.transactionHash}" target="_blank" class="transaction-hash">${tx.transactionHash}</a>`, 'success');
+          
+          // Reload rewards discount settings
+          await loadRewardsDiscountSettings();
+        } catch (error) {
+          console.error('Error updating rewards discount settings:', error);
+          showStatusMessage('updateDiscountStatus', `Error updating rewards discount settings: ${error.message}`, 'error');
+        }
+      });
+      
+      // Update prosperity fund settings
+      document.getElementById('updateProsperityFundForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        if (!isOwner) {
+          alert('Only the contract owner can update prosperity fund settings');
+          return;
+        }
+        
+        const enabled = document.getElementById('fundEnabled').checked;
+        const percentage = document.getElementById('fundPercentage').value;
+        const distributionDays = document.getElementById('distributionDays').value;
+        
+        try {
+          showStatusMessage('updateFundStatus', 'Updating prosperity fund settings...', 'pending');
+          
+          const tx = await nodePackagesContract.methods.updateProsperityFundSettings(enabled, percentage, distributionDays).send({ from: accounts[0] });
+          
+          showStatusMessage('updateFundStatus', `Successfully updated prosperity fund settings.<br>Transaction: <a href="https://sepolia.basescan.org/tx/${tx.transactionHash}" target="_blank" class="transaction-hash">${tx.transactionHash}</a>`, 'success');
+          
+          // Reload prosperity fund settings
+          await loadProsperityFundSettings();
+        } catch (error) {
+          console.error('Error updating prosperity fund settings:', error);
+          showStatusMessage('updateFundStatus', `Error updating prosperity fund settings: ${error.message}`, 'error');
+        }
+      });
+      
+      // Distribute prosperity fund
+      document.getElementById('distributeFundForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        if (!isOwner) {
+          alert('Only the contract owner can distribute the prosperity fund');
+          return;
+        }
+        
+        const recipient = document.getElementById('distributionAddress').value;
+        
+        try {
+          showStatusMessage('distributeFundStatus', 'Distributing prosperity fund...', 'pending');
+          
+          const tx = await nodePackagesContract.methods.distributeProsperityFund(recipient).send({ from: accounts[0] });
+          
+          showStatusMessage('distributeFundStatus', `Successfully distributed prosperity fund to ${recipient}.<br>Transaction: <a href="https://sepolia.basescan.org/tx/${tx.transactionHash}" target="_blank" class="transaction-hash">${tx.transactionHash}</a>`, 'success');
+          
+          // Reload prosperity fund settings
+          await loadProsperityFundSettings();
+        } catch (error) {
+          console.error('Error distributing prosperity fund:', error);
+          showStatusMessage('distributeFundStatus', `Error distributing prosperity fund: ${error.message}`, 'error');
+        }
+      });
+      
+      // Update node package status
+      document.getElementById('updateNodePackageStatusForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        if (!isOwner) {
+          alert('Only the contract owner can update node package status');
+          return;
+        }
+        
+        const packageId = document.getElementById('packageId').value;
+        const isActive = document.getElementById('packageActive').checked;
+        
+        try {
+          showStatusMessage('updatePackageStatus', 'Updating node package status...', 'pending');
+          
+          const tx = await nodePackagesContract.methods.setNodePackageActive(packageId, isActive).send({ from: accounts[0] });
+          
+          showStatusMessage('updatePackageStatus', `Successfully updated package #${packageId} status to ${isActive ? 'active' : 'inactive'}.<br>Transaction: <a href="https://sepolia.basescan.org/tx/${tx.transactionHash}" target="_blank" class="transaction-hash">${tx.transactionHash}</a>`, 'success');
+          
+          // Reload node packages
+          await loadNodePackages();
+        } catch (error) {
+          console.error('Error updating node package status:', error);
+          showStatusMessage('updatePackageStatus', `Error updating node package status: ${error.message}`, 'error');
+        }
+      });
+      
+      // Withdraw tokens
+      document.getElementById('withdrawTokensForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        if (!isOwner) {
+          alert('Only the contract owner can withdraw tokens');
+          return;
+        }
+        
+        const amount = document.getElementById('withdrawAmount').value;
+        const amountWei = web3.utils.toWei(amount, 'ether');
+        
+        try {
+          showStatusMessage('withdrawTokensStatus', 'Withdrawing tokens...', 'pending');
+          
+          const tx = await nodePackagesContract.methods.withdrawTokens(amountWei).send({ from: accounts[0] });
+          
+          showStatusMessage('withdrawTokensStatus', `Successfully withdrew ${amount} tokens.<br>Transaction: <a href="https://sepolia.basescan.org/tx/${tx.transactionHash}" target="_blank" class="transaction-hash">${tx.transactionHash}</a>`, 'success');
+          
+          // Reload contract token balance
+          await loadContractTokenBalance();
+        } catch (error) {
+          console.error('Error withdrawing tokens:', error);
+          showStatusMessage('withdrawTokensStatus', `Error withdrawing tokens: ${error.message}`, 'error');
+        }
+      });
+    }
+    
+    // Helper function to show status message
+    function showStatusMessage(elementId, message, type) {
+      const statusElement = document.getElementById(elementId);
+      statusElement.innerHTML = message;
+      statusElement.classList.remove('d-none', 'status-success-message', 'status-error-message', 'status-pending-message');
+      
+      switch (type) {
+        case 'success':
+          statusElement.classList.add('status-success-message');
+          break;
+        case 'error':
+          statusElement.classList.add('status-error-message');
+          break;
+        case 'pending':
+          statusElement.classList.add('status-pending-message');
+          break;
+      }
+    }
+    
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function() {
+      // Set contract addresses in UI
+      document.getElementById('nodeTokenAddress').innerText = nodeTokenAddress;
+      document.getElementById('nodePackagesAddress').innerText = nodePackagesAddress;
+      
+      // Connect wallet button
+      document.getElementById('connectWalletBtn').addEventListener('click', connectWallet);
+      
+      // Check if MetaMask is installed
+      if (window.ethereum) {
+        // Set up event listener for account changes
+        window.ethereum.on('accountsChanged', function(accounts) {
+          window.location.reload();
+        });
+        
+        // Set up event listener for chain changes
+        window.ethereum.on('chainChanged', function(chainId) {
+          window.location.reload();
+        });
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+generateUserReport(userAddress) {
+        const events = this.userEvents[userAddress] || [];
+        if (events.length === 0) {
+            return `\n👤 User: ${userAddress}\n   No events found.\n`;
+        }
+
+        let report = `\n👤 User: ${userAddress}\n`;
+        report += `📊 Total Events: ${events.length}\n`;
+        
+        // Categorize events
+        const eventCounts = {};
+        for (const event of events) {
+            eventCounts[event.eventName] = (eventCounts[event.eventName] || 0) + 1;
+        }
+        
+        report += `📈 Event Breakdown:\n`;
+        for (const [eventName, count] of Object.entries(eventCounts)) {
+            report += `   ${eventName}: ${count}\n`;
+        }
+        
+        report += `\n📝 Event Details:\n`;
+        for (const event of events) {
+            const date = event.timestamp ? new Date(event.timestamp * 1000).toISOString() : 'Unknown';
+            report += `   🔸 ${event.eventName} (Block: ${event.blockNumber})\n`;
+            report += `     Time: ${date}\n`;
+            report += `     Tx: ${event.transactionHash}\n`;
+            
+            // Format event arguments
+            if (event.args && Object.keys(event.args).length > 0) {
+                report += `     Data: `;
+                const argStrings = [];
+                for (const [key, value] of Object.entries(event.args)) {
+                    if (isNaN(key)) { // Only show named parameters
+                        let formattedValue = value;
+                        
+                        // Don't convert packageId, timestamp, and time-related fields
+                        if (key === 'packageId' || key === 'timestamp' || key === 'purchaseTime' || 
+                            key === 'expiryTime' || key.toLowerCase().includes('time') || 
+                            key.toLowerCase().includes('count') || key.toLowerCase().includes('id')) {
+                            formattedValue = value.toString();
+                        } else if (typeof value === 'bigint' || (typeof value === 'string' && /^\d+$/.test(value))) {
+                            try {
+                                formattedValue = this.web3.utils.fromWei(value.toString(), 'ether') + ' tokens';
+                            } catch (weiError) {
+                                formattedValue = value.toString();
+                            }
+                        }
+                        argStrings.push(`${key}: ${formattedValue}`);
+                    }
+                }
+                report += argStrings.join(', ') + '\n';
+            }
+            report += '\n';
+        }
+        
+        return report;
+    }
