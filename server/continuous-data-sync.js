@@ -42,7 +42,7 @@ class ContinuousDataSync {
       NODE_PACKAGES_ADDRESS
     );
 
-    this.apiBaseUrl = "https://mudaseriqbal.com/api" || "http://localhost:3001/api";
+    this.apiBaseUrl = "https://api.beastpartnerclub.com/api" || "http://localhost:3001/api";
     this.isRunning = false;
     this.lastCheckedBlock = 0;
     this.pollInterval = 15000;

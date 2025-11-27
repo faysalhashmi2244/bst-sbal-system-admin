@@ -19,7 +19,7 @@ class DataSyncService {
       NodePackagesABI.abi,
       NODE_PACKAGES_ADDRESS
     );
-    this.apiBaseUrl = 'https://mudaseriqbal.com/api';
+    this.apiBaseUrl = 'https://api.beastpartnerclub.com/api';
     // this.apiBaseUrl = "http://localhost:3001/api";
   }
 
