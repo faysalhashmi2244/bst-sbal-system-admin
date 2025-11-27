@@ -1,6 +1,11 @@
 // Data synchronization service to populate API with blockchain data
 const { Web3 } = require("web3");
+const https = require("https");
+const dns = require("dns");
 const NodePackagesABI = require("../react-admin-panel/src/contracts/NodePackages.json");
+
+// Force IPv4 DNS resolution to avoid IPv6 connection issues
+dns.setDefaultResultOrder("ipv4first");
 // const NodePackagesABI = require('../build/contracts/NodePackages.json');
 
 // Contract configuration
@@ -32,11 +37,18 @@ class DataSyncService {
 
   async request(endpoint, options = {}) {
     const url = `${this.apiBaseUrl}${endpoint}`;
+    
+    // Create HTTPS agent that forces IPv4
+    const agent = new https.Agent({
+      family: 4, // Force IPv4
+    });
+    
     const config = {
       headers: {
         "Content-Type": "application/json",
         ...options.headers,
       },
+      agent: url.startsWith('https') ? agent : undefined,
       ...options,
     };
 
