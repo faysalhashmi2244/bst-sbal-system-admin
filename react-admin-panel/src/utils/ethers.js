@@ -3,9 +3,9 @@ import NodeTokenABI from '../contracts/NodeTokenABI.json';
 import NodePackagesABI from '../contracts/NodePackagesABI.json';
 
 // Environment variables
-const NODE_TOKEN_ADDRESS = process.env.REACT_APP_NODE_TOKEN_ADDRESS || "0x35024799A05Ed370CE0f8F9b803A5BC0c072E854";
-const NODE_PACKAGES_ADDRESS = process.env.REACT_APP_NODE_PACKAGES_ADDRESS || "0x271d19C69fF93F9FaB2E35bcEb31A871A9d62657";
-const BASE_SEPOLIA_RPC_URL = process.env.REACT_APP_BASE_SEPOLIA_RPC_URL || 'https://rpc.ankr.com/base_sepolia/d8b45c6ca36d9f7e8f419eaf46b61b646e579e1c2e724865e3a8da0a5974fd8f';
+const NODE_TOKEN_ADDRESS = process.env.REACT_APP_NODE_TOKEN_ADDRESS || "0xF3f6C7bF8B0781350e7122039219Dcb23d6643AB";
+const NODE_PACKAGES_ADDRESS = process.env.REACT_APP_NODE_PACKAGES_ADDRESS || "0xC8AC3954f9550Ef41705e9c0aE2179b8Df01CF4B";
+const BASE_SEPOLIA_RPC_URL = process.env.REACT_APP_BASE_SEPOLIA_RPC_URL || 'https://polygon-rpc.com';
 // Create provider
 export const getProvider = () => {
   return new ethers.JsonRpcProvider(BASE_SEPOLIA_RPC_URL);
@@ -65,16 +65,16 @@ export const connectWallet = async () => {
     const signer = await provider.getSigner();
     const address = await signer.getAddress();
     
-    // Check if we're on the correct network (Base Sepolia)
+    // Check if we're on the correct network (polygon mainnet)
     const network = await provider.getNetwork();
     const chainId = network.chainId;
     
-    if (chainId !== (84532)) {
-      // If not on Base Sepolia, request network switch
+    if (chainId !== (137)) {
+      // If not on polygon mainnet, request network switch
       try {
         await window.ethereum.request({
           method: 'wallet_switchEthereumChain',
-          params: [{ chainId: '0x14a34' }], // 0x14a34 is hex for 84532
+          params: [{ chainId: '0x89' }], // 0x89 is hex for 137
         });
       } catch (switchError) {
         // If the network doesn't exist in the wallet, add it
@@ -83,15 +83,15 @@ export const connectWallet = async () => {
             method: 'wallet_addEthereumChain',
             params: [
               {
-                chainId: '0x14a34',
-                chainName: 'Base Sepolia',
+                chainId: '0x89',
+                chainName: 'Polygon Mainnet',
                 nativeCurrency: {
                   name: 'ETH',
                   symbol: 'ETH',
                   decimals: 18
                 },
-                rpcUrls: ['https://sepolia.base.org'],
-                blockExplorerUrls: ['https://sepolia.basescan.org/'],
+                rpcUrls: ['https://polygon-rpc.com'],
+                blockExplorerUrls: ['https://polygonscan.com/'],
               },
             ],
           });

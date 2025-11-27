@@ -1,10 +1,10 @@
-// Network configuration for Base Sepolia Testnet
-export const NODE_TOKEN_ADDRESS = "0x35024799A05Ed370CE0f8F9b803A5BC0c072E854";
-export const NODE_PACKAGES_ADDRESS = "0x271d19C69fF93F9FaB2E35bcEb31A871A9d62657";
-export const CHAIN_ID = 84532n; // Base Sepolia testnet
-export const NETWORK_NAME = "Base Sepolia";
-export const EXPLORER_URL = "https://sepolia.basescan.org";
-export const RPC_URL = "https://sepolia.base.org";
+// Network configuration for polygon mainnet
+export const NODE_TOKEN_ADDRESS = "0xF3f6C7bF8B0781350e7122039219Dcb23d6643AB";
+export const NODE_PACKAGES_ADDRESS = "0xC8AC3954f9550Ef41705e9c0aE2179b8Df01CF4B";
+export const CHAIN_ID = 137n; // polygon mainnet
+export const NETWORK_NAME = "Polygon Mainnet";
+export const EXPLORER_URL = "https://polygonscan.com";
+export const RPC_URL = "https://polygon-rpc.com";
 
 // Application configuration
 export const PROJECT_NAME = "Node Packages Admin";

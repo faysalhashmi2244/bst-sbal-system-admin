@@ -79,8 +79,8 @@ const html = `
       <p>This admin panel is designed to manage your Node Packages smart contract deployed on Base Sepolia testnet.</p>
       <p><strong>Contract Addresses:</strong></p>
       <ul>
-        <li><strong>NodeToken:</strong> 0x98345dd7453228169A978eE0Aca0306EF76481bF</li>
-        <li><strong>NodePackages:</strong> 0x902416B2Fd38b42691b9290ecc26Ad12E87616b7</li>
+        <li><strong>NodeToken:</strong> 0xF3f6C7bF8B0781350e7122039219Dcb23d6643AB</li>
+        <li><strong>NodePackages:</strong> 0xC8AC3954f9550Ef41705e9c0aE2179b8Df01CF4B</li>
       </ul>
       
       <p><strong>Features:</strong></p>

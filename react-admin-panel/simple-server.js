@@ -16,8 +16,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 
 // Contract addresses
-const nodeTokenAddress = "0x98345dd7453228169A978eE0Aca0306EF76481bF";
-const nodePackagesAddress = "0x902416B2Fd38b42691b9290ecc26Ad12E87616b7";
+const nodeTokenAddress = "0xF3f6C7bF8B0781350e7122039219Dcb23d6643AB";
+const nodePackagesAddress = "0xC8AC3954f9550Ef41705e9c0aE2179b8Df01CF4B";
 
 // Route for summary page
 app.get('/summary', (req, res) => {
@@ -104,9 +104,9 @@ app.get('/', (req, res) => {
         
         <div class="card">
           <h2>Contract Information</h2>
-          <p><strong>Network:</strong> Base Sepolia Testnet</p>
-          <p><strong>NodeToken:</strong> <a href="https://sepolia.basescan.org/address/${nodeTokenAddress}" target="_blank">${nodeTokenAddress}</a></p>
-          <p><strong>NodePackages:</strong> <a href="https://sepolia.basescan.org/address/${nodePackagesAddress}" target="_blank">${nodePackagesAddress}</a></p>
+          <p><strong>Network:</strong>Polygon Mainnet</p>
+          <p><strong>NodeToken:</strong> <a href="https://polygonscan.com/address/${nodeTokenAddress}" target="_blank">${nodeTokenAddress}</a></p>
+          <p><strong>NodePackages:</strong> <a href="https://polygonscan.com/address/${nodePackagesAddress}" target="_blank">${nodePackagesAddress}</a></p>
         </div>
         
         <div class="card">

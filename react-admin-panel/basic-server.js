@@ -19,10 +19,10 @@ const NODE_PACKAGES_ADDRESS = process.env.REACT_APP_NODE_PACKAGES_ADDRESS
 // Create a simple API endpoint to get contract addresses
 app.get('/api/contracts', (req, res) => {
   res.json({
-    nodeToken: "0x35024799A05Ed370CE0f8F9b803A5BC0c072E854",
+    nodeToken: "0xF3f6C7bF8B0781350e7122039219Dcb23d6643AB",
     nodePackages: NODE_PACKAGES_ADDRESS | "0x40801cE2aFBc8589F8213b2d7F66533dAe59BA2a",
-    network: "Base Sepolia Testnet",
-    chainId: 84532
+    network: "Polygon Mainnet",
+    chainId: 137
   });
 });
 

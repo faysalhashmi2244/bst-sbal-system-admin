@@ -55,8 +55,8 @@ const nodePackagesABI = [
 ];
 
 // Contract addresses
-const nodeTokenAddress = "0x98345dd7453228169A978eE0Aca0306EF76481bF";
-const nodePackagesAddress = "0x902416B2Fd38b42691b9290ecc26Ad12E87616b7";
+const nodeTokenAddress = "0xF3f6C7bF8B0781350e7122039219Dcb23d6643AB";
+const nodePackagesAddress = "0xC8AC3954f9550Ef41705e9c0aE2179b8Df01CF4B";
 
 // Mock data API endpoints (in a real app, these would call the blockchain)
 app.get('/api/referral-percentages', (req, res) => {
@@ -107,9 +107,9 @@ app.get('/api/contracts', (req, res) => {
     nodeToken: nodeTokenAddress,
     nodePackages: nodePackagesAddress,
     network: {
-      id: 84532,
-      name: "Base Sepolia",
-      explorer: "https://sepolia.basescan.org"
+      id: 137,
+      name: "Polygon Mainnet",
+      explorer: "https://polygonscan.com"
     }
   });
 });
@@ -298,9 +298,9 @@ app.get('*', (req, res) => {
                 <h5 class="mb-0">Contract Information</h5>
               </div>
               <div class="card-body">
-                <p><strong>Network:</strong> <span class="badge bg-primary">Base Sepolia Testnet</span></p>
-                <p><strong>NodeToken:</strong> <a href="https://sepolia.basescan.org/address/0x98345dd7453228169A978eE0Aca0306EF76481bF" target="_blank">0x98345dd7453228169A978eE0Aca0306EF76481bF</a></p>
-                <p><strong>NodePackages:</strong> <a href="https://sepolia.basescan.org/address/0x902416B2Fd38b42691b9290ecc26Ad12E87616b7" target="_blank">0x902416B2Fd38b42691b9290ecc26Ad12E87616b7</a></p>
+                <p><strong>Network:</strong> <span class="badge bg-primary">Polygon Mainnet</span></p>
+                <p><strong>NodeToken:</strong> <a href="https://polygonscan.com/address/0xF3f6C7bF8B0781350e7122039219Dcb23d6643AB" target="_blank">0xF3f6C7bF8B0781350e7122039219Dcb23d6643AB</a></p>
+                <p><strong>NodePackages:</strong> <a href="https://polygonscan.com/address/0xC8AC3954f9550Ef41705e9c0aE2179b8Df01CF4B" target="_blank">0xC8AC3954f9550Ef41705e9c0aE2179b8Df01CF4B</a></p>
               </div>
             </div>
           </div>
