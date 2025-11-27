@@ -5,7 +5,7 @@ async function main() {
     console.log('Starting historical sync...');
     
     // Start from a specific block number (you can adjust this)
-    const fromBlock = process.env.FROM_BLOCK || 32768120 ;
+    const fromBlock = process.env.FROM_BLOCK || 79584167 ;
     
     await eventListener.syncHistoricalEvents(parseInt(fromBlock));
     

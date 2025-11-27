@@ -86,7 +86,7 @@ class DataSyncService {
     }
   }
 
-  async syncEvents(fromBlock = 32768120, toBlock = "latest") {
+  async syncEvents(fromBlock = 79584167, toBlock = "latest") {
     try {
       console.log(`Syncing events from block ${fromBlock} to ${toBlock}...`);
 

@@ -815,7 +815,7 @@ export class EventListener {
   }
 
   // Sync historical events
-  async syncHistoricalEvents(fromBlock: number = 32768120) {
+  async syncHistoricalEvents(fromBlock: number = 79584167) {
     try {
       console.log(`Syncing historical events from block ${fromBlock}...`);
 

@@ -183,12 +183,12 @@ class ContinuousDataSync {
       // Get the latest event from API to determine last processed block
       const events = await this.request("/events?limit=1");
       if (events.events && events.events.length > 0) {
-        return events.events[0].blockNumber || 32768120;
+        return events.events[0].blockNumber || 79584167;
       }
-      return 32768120; // Default starting block
+      return 79584167; // Default starting block
     } catch (error) {
-      console.log("Starting from default block 32768120 ");
-      return 32768120;
+      console.log("Starting from default block 79584167 ");
+      return 79584167;
     }
   }
 
@@ -1029,12 +1029,12 @@ class ContinuousDataSync {
     try {
       const events = await this.request("/events?limit=1");
       if (events.events && events.events.length > 0) {
-        return Number(events.events[0].blockNumber) || 32768120;
+        return Number(events.events[0].blockNumber) || 79584167;
       }
-      return 32768120;
+      return 79584167;
     } catch (error) {
-      console.log("Starting from default block 32768120 ");
-      return 32768120;
+      console.log("Starting from default block 79584167 ");
+      return 79584167;
     }
   }
 
