@@ -374,9 +374,9 @@ const NodePackagesManager = ({ account }) => {
             <Tr>
               <Th>ID</Th>
               <Th>Name</Th>
-              <Th>Price (ETH)</Th>
+              <Th>Price (BST)</Th>
               <Th>Duration (days)</Th>
-              <Th>ROI (%)</Th>
+              <Th>Booster (%)</Th>
               <Th>Status</Th>
               <Th>Actions</Th>
             </Tr>
