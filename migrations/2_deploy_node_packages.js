@@ -7,7 +7,7 @@ module.exports = async function(deployer, network, accounts) {
   // Deploy the NodeToken contract first
   // await deployer.deploy(NodeToken);
   // const nodeTokenInstance = await NodeToken.deployed();
-  const nodeTokenInstance = await NodeToken.at('0x35024799A05Ed370CE0f8F9b803A5BC0c072E854');
+  const nodeTokenInstance = await NodeToken.at('0xF3f6C7bF8B0781350e7122039219Dcb23d6643AB');
   console.log(`NodeToken deployed at ${nodeTokenInstance.address}`);
   
   // Deploy the NodePackages contract with the NodeToken address

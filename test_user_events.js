@@ -30,9 +30,9 @@ async function testUserEventsLogger() {
         
         // Try with fallback configuration
         console.log('\n🔄 Trying with Base Sepolia testnet...');
-        process.env.RPC_URL = 'https://sepolia.base.org';
+        process.env.RPC_URL = 'https://polygon-rpc.com';
         process.env.NODE_PACKAGES_ADDRESS = '0x851373F13875E14e1fbD91472654ce90E8ff5E3f';
-        process.env.NODE_TOKEN_ADDRESS = '0x35024799A05Ed370CE0f8F9b803A5BC0c072E854';
+        process.env.NODE_TOKEN_ADDRESS = '0xF3f6C7bF8B0781350e7122039219Dcb23d6643AB';
         
         const fallbackLogger = new UserEventsLogger();
         try {

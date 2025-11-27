@@ -6964,24 +6964,12 @@
   "ast": {
     "absolutePath": "project:/contracts/NodeToken.sol",
     "exportedSymbols": {
-      "Context": [
-        1435
-      ],
-      "ERC20": [
-        698
-      ],
-      "IERC20": [
-        776
-      ],
-      "IERC20Metadata": [
-        801
-      ],
-      "NodeToken": [
-        3857
-      ],
-      "Ownable": [
-        112
-      ]
+      "Context": [1435],
+      "ERC20": [698],
+      "IERC20": [776],
+      "IERC20Metadata": [801],
+      "NodeToken": [3857],
+      "Ownable": [112]
     },
     "id": 3858,
     "license": "MIT",
@@ -6989,12 +6977,7 @@
     "nodes": [
       {
         "id": 3812,
-        "literals": [
-          "solidity",
-          "^",
-          "0.8",
-          ".8"
-        ],
+        "literals": ["solidity", "^", "0.8", ".8"],
         "nodeType": "PragmaDirective",
         "src": "32:23:10"
       },
@@ -7060,14 +7043,7 @@
         },
         "fullyImplemented": true,
         "id": 3857,
-        "linearizedBaseContracts": [
-          3857,
-          112,
-          698,
-          801,
-          776,
-          1435
-        ],
+        "linearizedBaseContracts": [3857, 112, 698, 801, 776, 1435],
         "name": "NodeToken",
         "nameLocation": "261:9:10",
         "nodeType": "ContractDefinition",

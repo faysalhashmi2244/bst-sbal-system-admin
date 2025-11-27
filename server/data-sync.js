@@ -6,11 +6,11 @@ const NodePackagesABI = require("../react-admin-panel/src/contracts/NodePackages
 // Contract configuration
 const NODE_PACKAGES_ADDRESS =
   process.env.NODE_PACKAGES_ADDRESS ||
-  "0x271d19C69fF93F9FaB2E35bcEb31A871A9d62657";
+  "0xC8AC3954f9550Ef41705e9c0aE2179b8Df01CF4B";
 const NODE_TOKEN_ADDRESS =
   process.env.NODE_TOKEN_ADDRESS ||
-  "0x35024799A05Ed370CE0f8F9b803A5BC0c072E854";
-const RPC_URL = process.env.RPC_URL || "https://sepolia.base.org";
+  "0xF3f6C7bF8B0781350e7122039219Dcb23d6643AB";
+const RPC_URL = process.env.RPC_URL || "https://polygon-rpc.com";
 
 class DataSyncService {
   constructor() {

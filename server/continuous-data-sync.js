@@ -5,22 +5,19 @@ const NodePackagesABI = require("../react-admin-panel/src/contracts/NodePackages
 // Configuration
 const NODE_PACKAGES_ADDRESS =
   process.env.NODE_PACKAGES_ADDRESS ||
-  "0x271d19C69fF93F9FaB2E35bcEb31A871A9d62657";
+  "0xC8AC3954f9550Ef41705e9c0aE2179b8Df01CF4B";
 const NODE_TOKEN_ADDRESS =
   process.env.NODE_TOKEN_ADDRESS ||
-  "0x35024799A05Ed370CE0f8F9b803A5BC0c072E854";
+  "0xF3f6C7bF8B0781350e7122039219Dcb23d6643AB";
 
 // WebSocket RPC URL
 const WS_RPC_URL =
   process.env.WS_RPC_URL ||
-  "wss://rpc.ankr.com/base_sepolia/ws/d8b45c6ca36d9f7e8f419eaf46b61b646e579e1c2e724865e3a8da0a5974fd8f";
+  "wss://polygon-bor-rpc.publicnode.com";
 
 // Fallback HTTP RPC endpoints
 const HTTP_RPC_ENDPOINTS = [
-  "https://sepolia.base.org",
-  "https://base-sepolia.blockpi.network/v1/rpc/public",
-  "https://base-sepolia.public.blastapi.io",
-  "https://base-sepolia-rpc.publicnode.com",
+  "https://polygon-rpc.com",
 ];
 
 class ContinuousDataSync {

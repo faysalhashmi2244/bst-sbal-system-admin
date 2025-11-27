@@ -3,9 +3,9 @@ const NodePackagesABI = require('./build/contracts/NodePackages.json');
 const NodeTokenABI = require('./build/contracts/NodeToken.json');
 
 // Configuration
-const PROVIDER_URL = process.env.RPC_URL || 'https://sepolia.base.org';
-const CONTRACT_ADDRESS = process.env.NODE_PACKAGES_ADDRESS || '0x271d19C69fF93F9FaB2E35bcEb31A871A9d62657';
-const TOKEN_ADDRESS = process.env.NODE_TOKEN_ADDRESS || '0x35024799A05Ed370CE0f8F9b803A5BC0c072E854';
+const PROVIDER_URL = process.env.RPC_URL || 'https://polygon-rpc.com';
+const CONTRACT_ADDRESS = process.env.NODE_PACKAGES_ADDRESS || '0xC8AC3954f9550Ef41705e9c0aE2179b8Df01CF4B';
+const TOKEN_ADDRESS = process.env.NODE_TOKEN_ADDRESS || '0xF3f6C7bF8B0781350e7122039219Dcb23d6643AB';
 
 class UserEventsLogger {
     constructor() {

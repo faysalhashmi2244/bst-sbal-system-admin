@@ -13,13 +13,13 @@ tarting migrations...
 
 2_deploy_node_packages.js
 =========================
-NodeToken deployed at 0x35024799A05Ed370CE0f8F9b803A5BC0c072E854
+NodeToken deployed at 0xF3f6C7bF8B0781350e7122039219Dcb23d6643AB
 
    Deploying 'NodePackages'
    ------------------------
    > transaction hash:    0x9982e82864b006658b421594f8c52b00914530fcce4417394515a132027bde95
    > Blocks: 4            Seconds: 9
-   > contract address:    0x271d19C69fF93F9FaB2E35bcEb31A871A9d62657
+   > contract address:    0xC8AC3954f9550Ef41705e9c0aE2179b8Df01CF4B
    > block number:        26419958
    > block timestamp:     1748608204
    > account:             0xc426A5300dCd57D8E448DAEda6FA1b583f36604E
@@ -29,7 +29,7 @@ NodeToken deployed at 0x35024799A05Ed370CE0f8F9b803A5BC0c072E854
    > value sent:          0 ETH
    > total cost:          0.01076932036295006 ETH
 
-NodePackages deployed at 0x271d19C69fF93F9FaB2E35bcEb31A871A9d62657
+NodePackages deployed at 0xC8AC3954f9550Ef41705e9c0aE2179b8Df01CF4B
 Initialized 11 node packages
 Transferred 1000000 tokens to the NodePackages contract for rewards
    > Saving artifacts
